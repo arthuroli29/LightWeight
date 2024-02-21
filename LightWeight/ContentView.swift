@@ -12,22 +12,19 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \RoutineEntity.startDate, ascending: false)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var routines: FetchedResults<RoutineEntity>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
+                ForEach(routines) { routine in
+                    Text(routine.name ?? "Routine \(dateFormatter.string(for: routine.startDate)!)")
                 }
                 .onDelete(perform: deleteItems)
             }
+            .navigationTitle("Routines")
             .toolbar {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -46,8 +43,8 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = RoutineEntity(context: viewContext)
+            newItem.startDate = Date()
 
             do {
                 try viewContext.save()
@@ -62,7 +59,7 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { routines[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -76,7 +73,7 @@ struct ContentView: View {
     }
 }
 
-private let itemFormatter: DateFormatter = {
+private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
     formatter.timeStyle = .medium

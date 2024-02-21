@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA864BC12B7C27E300E39282 /* LightWeight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA864BBF2B7C27E300E39282 /* LightWeight.xcdatamodeld */; };
 		FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */; };
 		FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06822B6B1E4F00BA5386 /* Persistence.swift */; };
 		FAAD06882B6B1E4F00BA5386 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06872B6B1E4F00BA5386 /* ContentView.swift */; };
@@ -17,6 +16,7 @@
 		FAAD06A32B6B1E5100BA5386 /* LightWeightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06A22B6B1E5100BA5386 /* LightWeightUITests.swift */; };
 		FAAD06A52B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06A42B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift */; };
 		FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06B22B6B1F6E00BA5386 /* Router.swift */; };
+		FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FA864BC02B7C27E300E39282 /* LightWeight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LightWeight.xcdatamodel; sourceTree = "<group>"; };
 		FAAD067D2B6B1E4F00BA5386 /* LightWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightApp.swift; sourceTree = "<group>"; };
 		FAAD06822B6B1E4F00BA5386 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -52,6 +51,7 @@
 		FAAD06A22B6B1E5100BA5386 /* LightWeightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightUITests.swift; sourceTree = "<group>"; };
 		FAAD06A42B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FAAD06B22B6B1F6E00BA5386 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		FAFCF8322B8302D400818A8A /* LightWeight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LightWeight.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,8 +109,8 @@
 				FAAD06892B6B1E5100BA5386 /* Assets.xcassets */,
 				FAAD068B2B6B1E5100BA5386 /* LightWeight.entitlements */,
 				FAAD068F2B6B1E5100BA5386 /* Info.plist */,
+				FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */,
 				FAAD068C2B6B1E5100BA5386 /* Preview Content */,
-				FA864BBF2B7C27E300E39282 /* LightWeight.xcdatamodeld */,
 			);
 			path = LightWeight;
 			sourceTree = "<group>";
@@ -282,7 +282,7 @@
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
 				FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */,
 				FAAD06882B6B1E4F00BA5386 /* ContentView.swift in Sources */,
-				FA864BC12B7C27E300E39282 /* LightWeight.xcdatamodeld in Sources */,
+				FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,12 +643,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FA864BBF2B7C27E300E39282 /* LightWeight.xcdatamodeld */ = {
+		FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FA864BC02B7C27E300E39282 /* LightWeight.xcdatamodel */,
+				FAFCF8322B8302D400818A8A /* LightWeight.xcdatamodel */,
 			);
-			currentVersion = FA864BC02B7C27E300E39282 /* LightWeight.xcdatamodel */;
+			currentVersion = FAFCF8322B8302D400818A8A /* LightWeight.xcdatamodel */;
 			path = LightWeight.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
