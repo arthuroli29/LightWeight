@@ -9,16 +9,21 @@ import SwiftUI
 
 final class Router: ObservableObject {
     
-    public enum Destination: Codable, Hashable {
-        case livingroom
-        case bedroom(owner: String)
+    public enum Destination: Hashable {
+        case routine(RoutineEntity)
     }
     
     public func getViewForDestination(_ destination: Destination) -> some View {
+        let view: AnyView
         switch destination {
-            default: Text("Not implemented yet")
+        case .routine(let routine):
+            view = AnyView(Text(routine.name ?? "Unnamed routine"))
+        default:
+            view = AnyView(Text("Not implemented yet"))
         }
+        return view
     }
+
     
     @Published var navPath = NavigationPath()
     

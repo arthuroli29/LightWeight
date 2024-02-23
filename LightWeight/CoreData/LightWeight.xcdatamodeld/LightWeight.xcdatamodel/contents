@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ExerciseEntity" representedClassName="ExerciseEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="variation" optional="YES" attributeType="String"/>
+        <relationship name="exerciseOption" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseOption" inverseName="exercises" inverseEntity="ExerciseOption"/>
         <relationship name="sets" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SetEntity" inverseName="exercise" inverseEntity="SetEntity"/>
         <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutEntity" inverseName="exercises" inverseEntity="WorkoutEntity"/>
+    </entity>
+    <entity name="ExerciseOption" representedClassName="ExerciseOption" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="exercises" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseEntity" inverseName="exerciseOption" inverseEntity="ExerciseEntity"/>
     </entity>
     <entity name="RoutineEntity" representedClassName="RoutineEntity" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -19,6 +23,7 @@
         <attribute name="typeDetail" optional="YES" attributeType="String"/>
         <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ExerciseEntity" inverseName="sets" inverseEntity="ExerciseEntity"/>
     </entity>
+    <entity name="VariationDatabase" representedClassName="VariationDatabase" syncable="YES" codeGenerationType="class"/>
     <entity name="WorkoutEntity" representedClassName="WorkoutEntity" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ExerciseEntity" inverseName="workout" inverseEntity="ExerciseEntity"/>
