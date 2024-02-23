@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */; };
 		FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */; };
 		FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06822B6B1E4F00BA5386 /* Persistence.swift */; };
 		FAAD06882B6B1E4F00BA5386 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06872B6B1E4F00BA5386 /* ContentView.swift */; };
@@ -16,6 +17,7 @@
 		FAAD06A32B6B1E5100BA5386 /* LightWeightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06A22B6B1E5100BA5386 /* LightWeightUITests.swift */; };
 		FAAD06A52B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06A42B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift */; };
 		FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06B22B6B1F6E00BA5386 /* Router.swift */; };
+		FACD49912B858BCD003FEA02 /* TextOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD49902B858BCD003FEA02 /* TextOverlayView.swift */; };
 		FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeightModifier.swift; sourceTree = "<group>"; };
 		FAAD067D2B6B1E4F00BA5386 /* LightWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightApp.swift; sourceTree = "<group>"; };
 		FAAD06822B6B1E4F00BA5386 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		FAAD06A22B6B1E5100BA5386 /* LightWeightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightUITests.swift; sourceTree = "<group>"; };
 		FAAD06A42B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FAAD06B22B6B1F6E00BA5386 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		FACD49902B858BCD003FEA02 /* TextOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOverlayView.swift; sourceTree = "<group>"; };
 		FAFCF8322B8302D400818A8A /* LightWeight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LightWeight.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +83,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA994DEE2B8838EA00B3834F /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		FA994DF02B88390F00B3834F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FAAD06822B6B1E4F00BA5386 /* Persistence.swift */,
+				FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FA994DF12B88392000B3834F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAAD068F2B6B1E5100BA5386 /* Info.plist */,
+				FAAD06892B6B1E5100BA5386 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		FAAD06742B6B1E4F00BA5386 = {
 			isa = PBXGroup;
 			children = (
@@ -102,14 +132,13 @@
 		FAAD067F2B6B1E4F00BA5386 /* LightWeight */ = {
 			isa = PBXGroup;
 			children = (
-				FAAD06B12B6B1F6800BA5386 /* Common */,
+				FA994DF12B88392000B3834F /* Supporting Files */,
+				FA994DF02B88390F00B3834F /* CoreData */,
+				FAAD06B12B6B1F6800BA5386 /* Helpers */,
 				FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */,
-				FAAD06822B6B1E4F00BA5386 /* Persistence.swift */,
 				FAAD06872B6B1E4F00BA5386 /* ContentView.swift */,
-				FAAD06892B6B1E5100BA5386 /* Assets.xcassets */,
+				FACD49902B858BCD003FEA02 /* TextOverlayView.swift */,
 				FAAD068B2B6B1E5100BA5386 /* LightWeight.entitlements */,
-				FAAD068F2B6B1E5100BA5386 /* Info.plist */,
-				FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */,
 				FAAD068C2B6B1E5100BA5386 /* Preview Content */,
 			);
 			path = LightWeight;
@@ -140,12 +169,13 @@
 			path = LightWeightUITests;
 			sourceTree = "<group>";
 		};
-		FAAD06B12B6B1F6800BA5386 /* Common */ = {
+		FAAD06B12B6B1F6800BA5386 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FA994DEE2B8838EA00B3834F /* Modifiers */,
 				FAAD06B22B6B1F6E00BA5386 /* Router.swift */,
 			);
-			path = Common;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,7 +311,9 @@
 				FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */,
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
 				FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */,
+				FACD49912B858BCD003FEA02 /* TextOverlayView.swift in Sources */,
 				FAAD06882B6B1E4F00BA5386 /* ContentView.swift in Sources */,
+				FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */,
 				FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,7 +478,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LightWeight/Info.plist;
+				INFOPLIST_FILE = "LightWeight/Supporting Files/Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -485,7 +517,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LightWeight/Info.plist;
+				INFOPLIST_FILE = "LightWeight/Supporting Files/Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

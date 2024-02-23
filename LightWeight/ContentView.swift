@@ -10,42 +10,103 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    @EnvironmentObject var router: Router
+    
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \RoutineEntity.startDate, ascending: false)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \RoutineEntity.order, ascending: true)],
         animation: .default)
     private var routines: FetchedResults<RoutineEntity>
-
+    
+    @State var text: String = ""
+    
+    @State var isAddRoutineSheetPresented: Bool = false
+    @State private var sheetHeight: CGFloat = .zero
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(routines) { routine in
-                    Text(routine.name ?? "Routine \(dateFormatter.string(for: routine.startDate)!)")
+            VStack
+            {
+                List {
+                    ForEach(routines) { routine in
+                        Button {
+                            router.navigate(to: .routine(routine))
+                        } label: {
+                            Text(routine.name ?? "Unnamed routine")
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
                 }
-                .onDelete(perform: deleteItems)
+                .listStyle(.plain)
             }
+            .padding()
             .navigationTitle("Routines")
             .toolbar {
-#if os(iOS)
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-#endif
+                
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button {
+                        isAddRoutineSheetPresented = true
+                    } label: {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
-            Text("Select an item")
+            .sheet(isPresented: $isAddRoutineSheetPresented) {
+                VStack{
+                    
+                    Spacer(minLength: 10)
+                    
+                    TextField("Routine name", text: $text, axis: .vertical)
+                        .padding(10)
+                        .background(Color.gray)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .shadow(radius: 10)
+                    
+                    Spacer(minLength: 40)
+                    
+                    Button {
+                        addRoutine(name: text)
+                        text = ""
+                        isAddRoutineSheetPresented = false
+                    } label: {
+                        Text("Done")
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 25)
+                    }
+                    .padding(.horizontal)
+                    .buttonStyle(.borderedProminent)
+                    
+                    Spacer(minLength: 15)
+                    
+                    Button(role: .destructive) {
+                        text = ""
+                        isAddRoutineSheetPresented = false
+                    } label: {
+                        Text("Cancel")
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 25)
+                    }
+                    .padding(.horizontal)
+                    .buttonStyle(.bordered)
+                }
+                .padding()
+                .fixedSize(horizontal: false, vertical: true)
+                .modifier(GetHeightModifier(height: $sheetHeight))
+                .presentationDetents([.height(sheetHeight)])
+                .presentationDragIndicator(.visible)
+            }
         }
     }
-
-    private func addItem() {
+    
+    private func addRoutine(name: String) {
         withAnimation {
             let newItem = RoutineEntity(context: viewContext)
-            newItem.startDate = Date()
-
+            newItem.order = Int16(self.routines.count) + 1
+            newItem.name = name
+            
             do {
                 try viewContext.save()
             } catch {
@@ -56,11 +117,11 @@ struct ContentView: View {
             }
         }
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { routines[$0] }.forEach(viewContext.delete)
-
+            
             do {
                 try viewContext.save()
             } catch {
@@ -72,13 +133,6 @@ struct ContentView: View {
         }
     }
 }
-
-private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 #Preview {
     ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
