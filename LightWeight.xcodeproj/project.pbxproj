@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */; };
+		FA0984C32B8C064800EB869D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C22B8C064800EB869D /* DataManager.swift */; };
 		FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */; };
 		FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */; };
 		FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06822B6B1E4F00BA5386 /* Persistence.swift */; };
-		FAAD06882B6B1E4F00BA5386 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06872B6B1E4F00BA5386 /* ContentView.swift */; };
+		FAAD06882B6B1E4F00BA5386 /* RoutinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06872B6B1E4F00BA5386 /* RoutinesView.swift */; };
 		FAAD068A2B6B1E5100BA5386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAD06892B6B1E5100BA5386 /* Assets.xcassets */; };
 		FAAD068E2B6B1E5100BA5386 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAD068D2B6B1E5100BA5386 /* Preview Assets.xcassets */; };
 		FAAD06992B6B1E5100BA5386 /* LightWeightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06982B6B1E5100BA5386 /* LightWeightTests.swift */; };
 		FAAD06A32B6B1E5100BA5386 /* LightWeightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06A22B6B1E5100BA5386 /* LightWeightUITests.swift */; };
 		FAAD06A52B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06A42B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift */; };
 		FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06B22B6B1F6E00BA5386 /* Router.swift */; };
-		FACD49912B858BCD003FEA02 /* TextOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD49902B858BCD003FEA02 /* TextOverlayView.swift */; };
+		FAC996292B8C28DF00793F14 /* RoutinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC996282B8C28DF00793F14 /* RoutinesViewModel.swift */; };
 		FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -39,11 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightSheet.swift; sourceTree = "<group>"; };
+		FA0984C22B8C064800EB869D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeightModifier.swift; sourceTree = "<group>"; };
 		FAAD067D2B6B1E4F00BA5386 /* LightWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightApp.swift; sourceTree = "<group>"; };
 		FAAD06822B6B1E4F00BA5386 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		FAAD06872B6B1E4F00BA5386 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FAAD06872B6B1E4F00BA5386 /* RoutinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesView.swift; sourceTree = "<group>"; };
 		FAAD06892B6B1E5100BA5386 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAAD068B2B6B1E5100BA5386 /* LightWeight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LightWeight.entitlements; sourceTree = "<group>"; };
 		FAAD068D2B6B1E5100BA5386 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -54,7 +58,7 @@
 		FAAD06A22B6B1E5100BA5386 /* LightWeightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightUITests.swift; sourceTree = "<group>"; };
 		FAAD06A42B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FAAD06B22B6B1F6E00BA5386 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		FACD49902B858BCD003FEA02 /* TextOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOverlayView.swift; sourceTree = "<group>"; };
+		FAC996282B8C28DF00793F14 /* RoutinesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesViewModel.swift; sourceTree = "<group>"; };
 		FAFCF8322B8302D400818A8A /* LightWeight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LightWeight.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +87,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA0984BC2B8C01BA00EB869D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FA0984BD2B8C01BD00EB869D /* Views */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FA0984BD2B8C01BD00EB869D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FA994DEE2B8838EA00B3834F /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +116,7 @@
 			children = (
 				FAAD06822B6B1E4F00BA5386 /* Persistence.swift */,
 				FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */,
+				FA0984C22B8C064800EB869D /* DataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -132,12 +153,12 @@
 		FAAD067F2B6B1E4F00BA5386 /* LightWeight */ = {
 			isa = PBXGroup;
 			children = (
+				FA0984BC2B8C01BA00EB869D /* Components */,
 				FA994DF12B88392000B3834F /* Supporting Files */,
 				FA994DF02B88390F00B3834F /* CoreData */,
 				FAAD06B12B6B1F6800BA5386 /* Helpers */,
 				FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */,
-				FAAD06872B6B1E4F00BA5386 /* ContentView.swift */,
-				FACD49902B858BCD003FEA02 /* TextOverlayView.swift */,
+				FAC996212B8C289900793F14 /* Modules */,
 				FAAD068B2B6B1E5100BA5386 /* LightWeight.entitlements */,
 				FAAD068C2B6B1E5100BA5386 /* Preview Content */,
 			);
@@ -176,6 +197,23 @@
 				FAAD06B22B6B1F6E00BA5386 /* Router.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FAC996212B8C289900793F14 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				FAC996222B8C28A200793F14 /* Routines */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		FAC996222B8C28A200793F14 /* Routines */ = {
+			isa = PBXGroup;
+			children = (
+				FAAD06872B6B1E4F00BA5386 /* RoutinesView.swift */,
+				FAC996282B8C28DF00793F14 /* RoutinesViewModel.swift */,
+			);
+			path = Routines;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,11 +348,13 @@
 			files = (
 				FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */,
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
+				FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */,
 				FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */,
-				FACD49912B858BCD003FEA02 /* TextOverlayView.swift in Sources */,
-				FAAD06882B6B1E4F00BA5386 /* ContentView.swift in Sources */,
+				FAAD06882B6B1E4F00BA5386 /* RoutinesView.swift in Sources */,
 				FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */,
+				FA0984C32B8C064800EB869D /* DataManager.swift in Sources */,
 				FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */,
+				FAC996292B8C28DF00793F14 /* RoutinesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
