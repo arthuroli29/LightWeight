@@ -11,58 +11,58 @@ import SwiftUI
 
 class RoutinesViewModel: ObservableObject {
     
-    init() {
+    init(dataManager: DataManager = DataManager.shared) {
+        self.dataManager = dataManager
         fetchRoutines()
     }
     
-    private var viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext
+    private var dataManager: DataManager
     
     @Published var text: String = ""
     @Published var isAddRoutineSheetPresented: Bool = false
     
     @Published var routines: [RoutineEntity] = []
     
-    var anyCancellable: AnyCancellable? = nil
-    
-    func fetchRoutines() {
+    private let fetchRequest = {
         let request: NSFetchRequest<RoutineEntity> = RoutineEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \RoutineEntity.order, ascending: true)]
-        
-        do {
-            routines = try viewContext.fetch(request)
-        } catch let error {
-            fatalError(error.localizedDescription)
-        }
+        return request
+    }()
+    
+    private func fetchRoutines() {
+        routines = dataManager.fetchData(fetchRequest: fetchRequest)
     }
     
-    func addRoutine() {
+    public func addRoutine() {
         withAnimation {
-            let newItem = RoutineEntity(context: viewContext)
+            
+            let newItem = RoutineEntity(context: dataManager.managedObjectContext)
             newItem.order = Int16(self.routines.count) + 1
             newItem.name = self.text
             self.text = ""
             
-            save()
-        }
-    }
-    
-    func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { routines[$0] }.forEach(viewContext.delete)
-            
-            save()
-        }
-    }
-    
-    func save() {
-        do {
-            try viewContext.save()
+            dataManager.saveData()
             fetchRoutines()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+    }
+    
+    public func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { routines[$0] }.forEach(dataManager.deleteEntity)
+            
+            fetchRoutines()
+        }
+    }
+    
+    public func moveItem(from source: IndexSet, to destination: Int) {
+        guard let affectedItems = ClosedRange.affectedItems(from: source, to: destination) else { return }
+        
+        routines.move(fromOffsets: source, toOffset: destination)
+        
+        for (index, item) in routines.enumerated() where affectedItems.contains(index) {
+            item.order = Int16(index)
+        }
+        
+        dataManager.saveData()
     }
 }

@@ -25,6 +25,7 @@ struct RoutinesView: View {
                         }
                     }
                     .onDelete(perform: viewModel.deleteItems)
+                    .onMove(perform: viewModel.moveItem)
                 }
                 .listStyle(.plain)
             }

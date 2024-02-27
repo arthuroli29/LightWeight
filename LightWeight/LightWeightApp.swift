@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct LightWeightApp: App {
     let persistenceController = PersistenceController.shared
+    let dataManager = DataManager.shared
     
     @ObservedObject var router = Router()
 
@@ -23,6 +24,7 @@ struct LightWeightApp: App {
                 }
             }
             .environmentObject(router)
+            .environmentObject(dataManager)
         }
     }
 }

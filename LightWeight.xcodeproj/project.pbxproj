@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */; };
 		FA0984C32B8C064800EB869D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C22B8C064800EB869D /* DataManager.swift */; };
+		FA9570C32B8D928F00C442A9 /* ClosedRange+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9570C22B8D928F00C442A9 /* ClosedRange+Adds.swift */; };
 		FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */; };
 		FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */; };
 		FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06822B6B1E4F00BA5386 /* Persistence.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightSheet.swift; sourceTree = "<group>"; };
 		FA0984C22B8C064800EB869D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FA9570C22B8D928F00C442A9 /* ClosedRange+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosedRange+Adds.swift"; sourceTree = "<group>"; };
 		FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeightModifier.swift; sourceTree = "<group>"; };
 		FAAD067D2B6B1E4F00BA5386 /* LightWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightApp.swift; sourceTree = "<group>"; };
@@ -103,6 +105,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		FA9570C02B8D927D00C442A9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FA9570C12B8D928300C442A9 /* ClosedRange */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FA9570C12B8D928300C442A9 /* ClosedRange */ = {
+			isa = PBXGroup;
+			children = (
+				FA9570C22B8D928F00C442A9 /* ClosedRange+Adds.swift */,
+			);
+			path = ClosedRange;
+			sourceTree = "<group>";
+		};
 		FA994DEE2B8838EA00B3834F /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +171,7 @@
 		FAAD067F2B6B1E4F00BA5386 /* LightWeight */ = {
 			isa = PBXGroup;
 			children = (
+				FA9570C02B8D927D00C442A9 /* Extensions */,
 				FA0984BC2B8C01BA00EB869D /* Components */,
 				FA994DF12B88392000B3834F /* Supporting Files */,
 				FA994DF02B88390F00B3834F /* CoreData */,
@@ -349,6 +368,7 @@
 				FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */,
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
 				FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */,
+				FA9570C32B8D928F00C442A9 /* ClosedRange+Adds.swift in Sources */,
 				FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */,
 				FAAD06882B6B1E4F00BA5386 /* RoutinesView.swift in Sources */,
 				FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */,
