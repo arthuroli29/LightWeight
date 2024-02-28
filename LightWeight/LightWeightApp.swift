@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct LightWeightApp: App {
-    let persistenceController = PersistenceController.shared
     let dataManager = DataManager.shared
     
     @ObservedObject var router = Router()
@@ -18,7 +17,6 @@ struct LightWeightApp: App {
         WindowGroup {
             NavigationStack(path: $router.navPath) {
                 RoutinesView()
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .navigationDestination(for: Router.Destination.self) { destination in
                     router.getViewForDestination(destination)
                 }

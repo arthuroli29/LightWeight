@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */; };
 		FA0984C32B8C064800EB869D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C22B8C064800EB869D /* DataManager.swift */; };
+		FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */; };
+		FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */; };
+		FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */; };
 		FA9570C32B8D928F00C442A9 /* ClosedRange+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9570C22B8D928F00C442A9 /* ClosedRange+Adds.swift */; };
 		FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */; };
 		FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */; };
@@ -44,6 +47,9 @@
 /* Begin PBXFileReference section */
 		FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightSheet.swift; sourceTree = "<group>"; };
 		FA0984C22B8C064800EB869D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchRequest+Adds.swift"; sourceTree = "<group>"; };
+		FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Adds.swift"; sourceTree = "<group>"; };
+		FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Adds.swift"; sourceTree = "<group>"; };
 		FA9570C22B8D928F00C442A9 /* ClosedRange+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosedRange+Adds.swift"; sourceTree = "<group>"; };
 		FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeightModifier.swift; sourceTree = "<group>"; };
 		FAAD067D2B6B1E4F00BA5386 /* LightWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,9 +111,36 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		FA90B27B2B8EF4C700E0626E /* NSFetchRequest */ = {
+			isa = PBXGroup;
+			children = (
+				FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */,
+			);
+			path = NSFetchRequest;
+			sourceTree = "<group>";
+		};
+		FA90B27C2B8EF4CD00E0626E /* NSFetchedResultsController */ = {
+			isa = PBXGroup;
+			children = (
+				FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */,
+			);
+			path = NSFetchedResultsController;
+			sourceTree = "<group>";
+		};
+		FA90B2812B8EF68800E0626E /* NSManagedObject */ = {
+			isa = PBXGroup;
+			children = (
+				FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */,
+			);
+			path = NSManagedObject;
+			sourceTree = "<group>";
+		};
 		FA9570C02B8D927D00C442A9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FA90B2812B8EF68800E0626E /* NSManagedObject */,
+				FA90B27C2B8EF4CD00E0626E /* NSFetchedResultsController */,
+				FA90B27B2B8EF4C700E0626E /* NSFetchRequest */,
 				FA9570C12B8D928300C442A9 /* ClosedRange */,
 			);
 			path = Extensions;
@@ -369,10 +402,13 @@
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
 				FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */,
 				FA9570C32B8D928F00C442A9 /* ClosedRange+Adds.swift in Sources */,
+				FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */,
 				FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */,
+				FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */,
 				FAAD06882B6B1E4F00BA5386 /* RoutinesView.swift in Sources */,
 				FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */,
 				FA0984C32B8C064800EB869D /* DataManager.swift in Sources */,
+				FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */,
 				FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */,
 				FAC996292B8C28DF00793F14 /* RoutinesViewModel.swift in Sources */,
 			);

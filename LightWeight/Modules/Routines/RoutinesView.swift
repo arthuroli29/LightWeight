@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RoutinesView: View {
-    
     @EnvironmentObject var router: Router
     @StateObject var viewModel = RoutinesViewModel()
     
@@ -92,5 +91,5 @@ struct RoutinesView: View {
 }
 
 #Preview {
-    RoutinesView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    RoutinesView().environmentObject(DataManager.preview)
 }

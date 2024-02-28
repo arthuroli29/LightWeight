@@ -6,43 +6,42 @@
 //
 
 import CoreData
-import Combine
 import SwiftUI
 
-class RoutinesViewModel: ObservableObject {
-    
+final class RoutinesViewModel: NSObject, ObservableObject {
     init(dataManager: DataManager = DataManager.shared) {
         self.dataManager = dataManager
+        
+        super.init()
+        
         fetchRoutines()
     }
-    
-    private var dataManager: DataManager
     
     @Published var text: String = ""
     @Published var isAddRoutineSheetPresented: Bool = false
     
     @Published var routines: [RoutineEntity] = []
     
-    private let fetchRequest = {
-        let request: NSFetchRequest<RoutineEntity> = RoutineEntity.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \RoutineEntity.order, ascending: true)]
-        return request
-    }()
+    private var dataManager: DataManager
+    
+    private lazy var routinesController = NSFetchedResultsController(fetchRequest: routinesFetchRequest, dataManager: dataManager)
+        .with(delegate: self)
+    private let routinesFetchRequest = RoutineEntity.fetchRequest()
+        .with(sortDescriptors: [NSSortDescriptor(keyPath: \RoutineEntity.order, ascending: true)])
     
     private func fetchRoutines() {
-        routines = dataManager.fetchData(fetchRequest: fetchRequest)
+        try? routinesController.performFetch()
+        routines = routinesController.fetchedObjects ?? []
     }
     
     public func addRoutine() {
         withAnimation {
-            
-            let newItem = RoutineEntity(context: dataManager.managedObjectContext)
+            let newItem = RoutineEntity(dataManager: dataManager)
             newItem.order = Int16(self.routines.count) + 1
             newItem.name = self.text
             self.text = ""
             
             dataManager.saveData()
-            fetchRoutines()
         }
     }
     
@@ -50,7 +49,7 @@ class RoutinesViewModel: ObservableObject {
         withAnimation {
             offsets.map { routines[$0] }.forEach(dataManager.deleteEntity)
             
-            fetchRoutines()
+            dataManager.saveData()
         }
     }
     
@@ -64,5 +63,13 @@ class RoutinesViewModel: ObservableObject {
         }
         
         dataManager.saveData()
+    }
+}
+
+extension RoutinesViewModel: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if let routines = controller.fetchedObjects as? [RoutineEntity] {
+            self.routines = routines
+        }
     }
 }
