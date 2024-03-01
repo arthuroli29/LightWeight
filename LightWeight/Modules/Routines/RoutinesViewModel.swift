@@ -38,7 +38,7 @@ final class RoutinesViewModel: NSObject, ObservableObject {
         withAnimation {
             let newItem = RoutineEntity(dataManager: dataManager)
             newItem.order = Int16(self.routines.count) + 1
-            newItem.name = self.text
+            newItem.name = self.text.emptyDefault("Unnamed routine")
             self.text = ""
             
             dataManager.saveData()

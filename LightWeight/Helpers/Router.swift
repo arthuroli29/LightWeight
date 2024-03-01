@@ -17,7 +17,7 @@ final class Router: ObservableObject {
         let view: AnyView
         switch destination {
         case .routine(let routine):
-            view = AnyView(Text(routine.name ?? "Unnamed routine"))
+            view = AnyView(RoutineView(routine: routine))
         default:
             view = AnyView(Text("Not implemented yet"))
         }

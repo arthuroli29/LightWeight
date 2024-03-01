@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */; };
 		FA0984C32B8C064800EB869D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C22B8C064800EB869D /* DataManager.swift */; };
+		FA279F932B915E2F009F4E90 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F922B915E2F009F4E90 /* RoutineView.swift */; };
+		FA279F952B915E3E009F4E90 /* RoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F942B915E3E009F4E90 /* RoutineViewModel.swift */; };
+		FA279F982B916049009F4E90 /* String+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F972B916049009F4E90 /* String+Adds.swift */; };
 		FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */; };
 		FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */; };
 		FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */; };
@@ -47,6 +50,9 @@
 /* Begin PBXFileReference section */
 		FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightSheet.swift; sourceTree = "<group>"; };
 		FA0984C22B8C064800EB869D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FA279F922B915E2F009F4E90 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
+		FA279F942B915E3E009F4E90 /* RoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewModel.swift; sourceTree = "<group>"; };
+		FA279F972B916049009F4E90 /* String+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Adds.swift"; sourceTree = "<group>"; };
 		FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchRequest+Adds.swift"; sourceTree = "<group>"; };
 		FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Adds.swift"; sourceTree = "<group>"; };
 		FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Adds.swift"; sourceTree = "<group>"; };
@@ -111,6 +117,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		FA279F962B91603D009F4E90 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				FA279F972B916049009F4E90 /* String+Adds.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
 		FA90B27B2B8EF4C700E0626E /* NSFetchRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +152,7 @@
 		FA9570C02B8D927D00C442A9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FA279F962B91603D009F4E90 /* String */,
 				FA90B2812B8EF68800E0626E /* NSManagedObject */,
 				FA90B27C2B8EF4CD00E0626E /* NSFetchedResultsController */,
 				FA90B27B2B8EF4C700E0626E /* NSFetchRequest */,
@@ -264,6 +279,8 @@
 			children = (
 				FAAD06872B6B1E4F00BA5386 /* RoutinesView.swift */,
 				FAC996282B8C28DF00793F14 /* RoutinesViewModel.swift */,
+				FA279F922B915E2F009F4E90 /* RoutineView.swift */,
+				FA279F942B915E3E009F4E90 /* RoutineViewModel.swift */,
 			);
 			path = Routines;
 			sourceTree = "<group>";
@@ -284,6 +301,8 @@
 			dependencies = (
 			);
 			name = LightWeight;
+			packageProductDependencies = (
+			);
 			productName = Academy;
 			productReference = FAAD067D2B6B1E4F00BA5386 /* LightWeight.app */;
 			productType = "com.apple.product-type.application";
@@ -356,6 +375,8 @@
 				Base,
 			);
 			mainGroup = FAAD06742B6B1E4F00BA5386;
+			packageReferences = (
+			);
 			productRefGroup = FAAD067E2B6B1E4F00BA5386 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -408,7 +429,10 @@
 				FAAD06882B6B1E4F00BA5386 /* RoutinesView.swift in Sources */,
 				FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */,
 				FA0984C32B8C064800EB869D /* DataManager.swift in Sources */,
+				FA279F982B916049009F4E90 /* String+Adds.swift in Sources */,
+				FA279F952B915E3E009F4E90 /* RoutineViewModel.swift in Sources */,
 				FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */,
+				FA279F932B915E2F009F4E90 /* RoutineView.swift in Sources */,
 				FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */,
 				FAC996292B8C28DF00793F14 /* RoutinesViewModel.swift in Sources */,
 			);
