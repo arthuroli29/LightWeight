@@ -26,10 +26,20 @@ struct RoutineView: View {
                         Text(workout.name ?? "Unnamed workout")
                     }
                     .onDelete(perform: viewModel.deleteItems)
+                    .onMove(perform: viewModel.moveWorkout)
                 }
                 .listStyle(.plain)
+                
+                Spacer()
+                    .frame(maxHeight: .infinity)
+                
+                Button {
+                    viewModel.setActive()
+                } label: {
+                    Text("Set active")
+                }
             }
-            .navigationTitle(viewModel.routine.name ?? "Unnamed routine")
+            .navigationTitle((viewModel.routine.name ?? "Unnamed routine") + (viewModel.routine.active ? " (active)" : ""))
             .toolbar {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -38,50 +48,23 @@ struct RoutineView: View {
                 
                 ToolbarItem {
                     Button {
-                        viewModel.addWorkout()
+                        viewModel.isAddWorkoutSheetPresented = true
                     } label: {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
             .padding()
-        }
-    }
-}
-
-final class RoutineViewModel: ObservableObject {
-    init(routineEntity: RoutineEntity, dataManager: DataManager = .shared) {
-        self.dataManager = dataManager
-        self.routine = routineEntity
-    }
-    
-    private let dataManager: DataManager
-    @Published var routine: RoutineEntity {
-        didSet {
-            print("\(routine.workouts?.count ?? 0)")
-        }
-    }
-    var workouts: [WorkoutEntity] {
-        self.routine.workouts?.array as? [WorkoutEntity] ?? []
-    }
-    
-    public func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { workouts[$0] }.forEach(dataManager.deleteEntity)
-            
-            dataManager.saveData()
-            self.objectWillChange.send()
-        }
-    }
-    
-    func addWorkout() {
-        withAnimation {
-            let newWorkout = WorkoutEntity(context: dataManager.managedObjectContext)
-            newWorkout.name = "New workout"
-            newWorkout.routine = self.routine
-            
-            dataManager.saveData()
-            self.objectWillChange.send()
+            .sheet(isPresented: $viewModel.isAddWorkoutSheetPresented) {
+                TextFieldDynamicSheet(text: $viewModel.newWorkoutText,
+                                      onDone: {
+                    viewModel.addWorkout(name: viewModel.newWorkoutText)
+                    viewModel.isAddWorkoutSheetPresented = false
+                }, onCancel: {
+                    viewModel.newWorkoutText = ""
+                    viewModel.isAddWorkoutSheetPresented = false
+                })
+            }
         }
     }
 }

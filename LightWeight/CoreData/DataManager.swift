@@ -47,6 +47,7 @@ class DataManager: NSObject, ObservableObject {
             let newItem = RoutineEntity(dataManager: self)
             newItem.order = Int16(number)
             newItem.name = "Routine \(number)"
+            newItem.active = number == 4
         }
         
         self.saveData()

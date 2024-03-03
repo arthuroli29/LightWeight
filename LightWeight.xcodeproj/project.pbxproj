@@ -12,6 +12,8 @@
 		FA279F932B915E2F009F4E90 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F922B915E2F009F4E90 /* RoutineView.swift */; };
 		FA279F952B915E3E009F4E90 /* RoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F942B915E3E009F4E90 /* RoutineViewModel.swift */; };
 		FA279F982B916049009F4E90 /* String+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F972B916049009F4E90 /* String+Adds.swift */; };
+		FA279F9D2B94010C009F4E90 /* TextFieldDynamicSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F9C2B94010C009F4E90 /* TextFieldDynamicSheet.swift */; };
+		FA279FA12B9411E1009F4E90 /* RoutineListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279FA02B9411E1009F4E90 /* RoutineListViewModel.swift */; };
 		FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */; };
 		FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */; };
 		FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */; };
@@ -19,14 +21,13 @@
 		FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */; };
 		FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */; };
 		FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06822B6B1E4F00BA5386 /* Persistence.swift */; };
-		FAAD06882B6B1E4F00BA5386 /* RoutinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06872B6B1E4F00BA5386 /* RoutinesView.swift */; };
+		FAAD06882B6B1E4F00BA5386 /* RoutineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06872B6B1E4F00BA5386 /* RoutineListView.swift */; };
 		FAAD068A2B6B1E5100BA5386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAD06892B6B1E5100BA5386 /* Assets.xcassets */; };
 		FAAD068E2B6B1E5100BA5386 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAD068D2B6B1E5100BA5386 /* Preview Assets.xcassets */; };
 		FAAD06992B6B1E5100BA5386 /* LightWeightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06982B6B1E5100BA5386 /* LightWeightTests.swift */; };
 		FAAD06A32B6B1E5100BA5386 /* LightWeightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06A22B6B1E5100BA5386 /* LightWeightUITests.swift */; };
 		FAAD06A52B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06A42B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift */; };
 		FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06B22B6B1F6E00BA5386 /* Router.swift */; };
-		FAC996292B8C28DF00793F14 /* RoutinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC996282B8C28DF00793F14 /* RoutinesViewModel.swift */; };
 		FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		FA279F922B915E2F009F4E90 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		FA279F942B915E3E009F4E90 /* RoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewModel.swift; sourceTree = "<group>"; };
 		FA279F972B916049009F4E90 /* String+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Adds.swift"; sourceTree = "<group>"; };
+		FA279F9C2B94010C009F4E90 /* TextFieldDynamicSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDynamicSheet.swift; sourceTree = "<group>"; };
+		FA279FA02B9411E1009F4E90 /* RoutineListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoutineListViewModel.swift; path = LightWeight/Modules/RoutineList/RoutineListViewModel.swift; sourceTree = SOURCE_ROOT; };
 		FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchRequest+Adds.swift"; sourceTree = "<group>"; };
 		FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Adds.swift"; sourceTree = "<group>"; };
 		FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Adds.swift"; sourceTree = "<group>"; };
@@ -61,7 +64,7 @@
 		FAAD067D2B6B1E4F00BA5386 /* LightWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightApp.swift; sourceTree = "<group>"; };
 		FAAD06822B6B1E4F00BA5386 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		FAAD06872B6B1E4F00BA5386 /* RoutinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesView.swift; sourceTree = "<group>"; };
+		FAAD06872B6B1E4F00BA5386 /* RoutineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListView.swift; sourceTree = "<group>"; };
 		FAAD06892B6B1E5100BA5386 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAAD068B2B6B1E5100BA5386 /* LightWeight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LightWeight.entitlements; sourceTree = "<group>"; };
 		FAAD068D2B6B1E5100BA5386 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -72,7 +75,6 @@
 		FAAD06A22B6B1E5100BA5386 /* LightWeightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightUITests.swift; sourceTree = "<group>"; };
 		FAAD06A42B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FAAD06B22B6B1F6E00BA5386 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		FAC996282B8C28DF00793F14 /* RoutinesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesViewModel.swift; sourceTree = "<group>"; };
 		FAFCF8322B8302D400818A8A /* LightWeight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LightWeight.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */,
+				FA279F9C2B94010C009F4E90 /* TextFieldDynamicSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,6 +126,15 @@
 				FA279F972B916049009F4E90 /* String+Adds.swift */,
 			);
 			path = String;
+			sourceTree = "<group>";
+		};
+		FA279F9F2B941122009F4E90 /* RoutineList */ = {
+			isa = PBXGroup;
+			children = (
+				FAAD06872B6B1E4F00BA5386 /* RoutineListView.swift */,
+				FA279FA02B9411E1009F4E90 /* RoutineListViewModel.swift */,
+			);
+			path = RoutineList;
 			sourceTree = "<group>";
 		};
 		FA90B27B2B8EF4C700E0626E /* NSFetchRequest */ = {
@@ -269,20 +281,19 @@
 		FAC996212B8C289900793F14 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				FAC996222B8C28A200793F14 /* Routines */,
+				FA279F9F2B941122009F4E90 /* RoutineList */,
+				FAC996222B8C28A200793F14 /* Routine */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		FAC996222B8C28A200793F14 /* Routines */ = {
+		FAC996222B8C28A200793F14 /* Routine */ = {
 			isa = PBXGroup;
 			children = (
-				FAAD06872B6B1E4F00BA5386 /* RoutinesView.swift */,
-				FAC996282B8C28DF00793F14 /* RoutinesViewModel.swift */,
 				FA279F922B915E2F009F4E90 /* RoutineView.swift */,
 				FA279F942B915E3E009F4E90 /* RoutineViewModel.swift */,
 			);
-			path = Routines;
+			path = Routine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA279F9D2B94010C009F4E90 /* TextFieldDynamicSheet.swift in Sources */,
 				FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */,
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
 				FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */,
@@ -426,7 +438,8 @@
 				FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */,
 				FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */,
 				FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */,
-				FAAD06882B6B1E4F00BA5386 /* RoutinesView.swift in Sources */,
+				FA279FA12B9411E1009F4E90 /* RoutineListViewModel.swift in Sources */,
+				FAAD06882B6B1E4F00BA5386 /* RoutineListView.swift in Sources */,
 				FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */,
 				FA0984C32B8C064800EB869D /* DataManager.swift in Sources */,
 				FA279F982B916049009F4E90 /* String+Adds.swift in Sources */,
@@ -434,7 +447,6 @@
 				FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */,
 				FA279F932B915E2F009F4E90 /* RoutineView.swift in Sources */,
 				FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */,
-				FAC996292B8C28DF00793F14 /* RoutinesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

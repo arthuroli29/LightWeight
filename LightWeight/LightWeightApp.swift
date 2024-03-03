@@ -16,7 +16,7 @@ struct LightWeightApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $router.navPath) {
-                RoutinesView()
+                RoutineListView()
                 .navigationDestination(for: Router.Destination.self) { destination in
                     router.getViewForDestination(destination)
                 }

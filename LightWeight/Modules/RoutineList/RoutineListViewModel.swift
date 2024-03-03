@@ -8,7 +8,7 @@
 import CoreData
 import SwiftUI
 
-final class RoutinesViewModel: NSObject, ObservableObject {
+final class RoutineListViewModel: NSObject, ObservableObject {
     init(dataManager: DataManager = DataManager.shared) {
         self.dataManager = dataManager
         
@@ -17,7 +17,7 @@ final class RoutinesViewModel: NSObject, ObservableObject {
         fetchRoutines()
     }
     
-    @Published var text: String = ""
+    @Published var newRoutineText: String = ""
     @Published var isAddRoutineSheetPresented: Bool = false
     
     @Published var routines: [RoutineEntity] = []
@@ -38,8 +38,8 @@ final class RoutinesViewModel: NSObject, ObservableObject {
         withAnimation {
             let newItem = RoutineEntity(dataManager: dataManager)
             newItem.order = Int16(self.routines.count) + 1
-            newItem.name = self.text.emptyDefault("Unnamed routine")
-            self.text = ""
+            newItem.name = self.newRoutineText.emptyDefault("Unnamed routine")
+            self.newRoutineText = ""
             
             dataManager.saveData()
         }
@@ -66,10 +66,17 @@ final class RoutinesViewModel: NSObject, ObservableObject {
     }
 }
 
-extension RoutinesViewModel: NSFetchedResultsControllerDelegate {
+extension RoutineListViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if let routines = controller.fetchedObjects as? [RoutineEntity] {
             self.routines = routines
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard let routineEntity = anObject as? RoutineEntity, type == .update else { return }
+        if routineEntity.active {
+            self.routines.filter({ $0 != routineEntity }).forEach({ $0.active = false })
         }
     }
 }
