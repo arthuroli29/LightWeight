@@ -77,6 +77,7 @@ extension RoutineListViewModel: NSFetchedResultsControllerDelegate {
         guard let routineEntity = anObject as? RoutineEntity, type == .update else { return }
         if routineEntity.active {
             self.routines.filter({ $0 != routineEntity }).forEach({ $0.active = false })
+            self.dataManager.saveData()
         }
     }
 }

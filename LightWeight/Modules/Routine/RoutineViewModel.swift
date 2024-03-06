@@ -29,6 +29,7 @@ final class RoutineViewModel: ObservableObject {
     
     @Published var newWorkoutText: String = ""
     @Published var isAddWorkoutSheetPresented: Bool = false
+    @Published var editMode: EditMode = .inactive
     
     private let dataManager: DataManager
     @Published var routine: RoutineEntity
@@ -55,16 +56,17 @@ final class RoutineViewModel: ObservableObject {
     }
     
     func moveWorkout(fromOffsets source: IndexSet, toOffset destination: Int) {
-        guard let workouts = routine.workouts else { return }
+        guard let workouts = routine.workouts, let sourceStart = source.first else { return }
         let mutableSet = NSMutableOrderedSet(orderedSet: workouts)
+        //Why do I have to do this?
+        let destination = destination > 0 ? (destination - sourceStart > 0 ? destination - source.count : destination) : 0
         mutableSet.moveObjects(at: source, to: destination)
         routine.workouts = mutableSet
     }
     
-    func setActive() {
+    func toggleActive() {
         withAnimation {
-            self.routine.active = true
-            self.dataManager.saveData()
+            self.routine.active.toggle()
             self.objectWillChange.send()
         }
     }

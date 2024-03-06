@@ -22,49 +22,60 @@ struct RoutineView: View {
                     .frame(alignment: .center)
                     .font(.headline)
                 List {
-                    ForEach(viewModel.workouts, id: \.self) { workout in
-                        Text(workout.name ?? "Unnamed workout")
+                    ForEach(viewModel.workouts) { workout in
+                        Button {
+                            //TODO: open workout
+                        } label: {
+                            Text(workout.name ?? "Unnamed workout")
+                        }
                     }
                     .onDelete(perform: viewModel.deleteItems)
-                    .onMove(perform: viewModel.moveWorkout)
+                    .onMove(perform: { indexSet, destination in
+                        viewModel.moveWorkout(fromOffsets: indexSet, toOffset: destination)
+                    })
                 }
+                .environment(\.editMode, $viewModel.editMode)
                 .listStyle(.plain)
                 
                 Spacer()
                     .frame(maxHeight: .infinity)
                 
                 Button {
-                    viewModel.setActive()
+                    viewModel.toggleActive()
                 } label: {
-                    Text("Set active")
-                }
-            }
-            .navigationTitle((viewModel.routine.name ?? "Unnamed routine") + (viewModel.routine.active ? " (active)" : ""))
-            .toolbar {
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                
-                ToolbarItem {
-                    Button {
-                        viewModel.isAddWorkoutSheetPresented = true
-                    } label: {
-                        Label("Add Item", systemImage: "plus")
-                    }
+                    Text(viewModel.routine.active ? "Set not active" : "Set active")
+                        .vi
                 }
             }
             .padding()
-            .sheet(isPresented: $viewModel.isAddWorkoutSheetPresented) {
-                TextFieldDynamicSheet(text: $viewModel.newWorkoutText,
-                                      onDone: {
-                    viewModel.addWorkout(name: viewModel.newWorkoutText)
-                    viewModel.isAddWorkoutSheetPresented = false
-                }, onCancel: {
-                    viewModel.newWorkoutText = ""
-                    viewModel.isAddWorkoutSheetPresented = false
-                })
+            
+        }
+        .toolbar {
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
+                    .environment(\.editMode, $viewModel.editMode)
             }
+            
+            ToolbarItem {
+                Button {
+                    viewModel.isAddWorkoutSheetPresented = true
+                } label: {
+                    Label("Add Item", systemImage: "plus")
+                }
+            }
+        }
+        .navigationTitle((viewModel.routine.name ?? "Unnamed routine") + (viewModel.routine.active ? " (active)" : ""))
+        .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $viewModel.isAddWorkoutSheetPresented) {
+            TextFieldDynamicSheet(text: $viewModel.newWorkoutText,
+                                  onDone: {
+                viewModel.addWorkout(name: viewModel.newWorkoutText)
+                viewModel.isAddWorkoutSheetPresented = false
+            }, onCancel: {
+                viewModel.newWorkoutText = ""
+                viewModel.isAddWorkoutSheetPresented = false
+            })
         }
     }
 }

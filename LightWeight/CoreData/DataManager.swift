@@ -80,4 +80,12 @@ class DataManager: NSObject, ObservableObject {
     public func deleteEntity(_ entity: NSManagedObject) {
         managedObjectContext.delete(entity)
     }
+    
+    func fetchActiveRoutine() -> RoutineEntity? {
+        let fetchRequest = NSFetchRequest<RoutineEntity>(entityName: "RoutineEntity")
+        fetchRequest.predicate = NSPredicate(format: "active == YES")
+
+        let results = fetchData(fetchRequest: fetchRequest)
+        return results.first
+    }
 }
