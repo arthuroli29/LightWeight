@@ -14,6 +14,9 @@
 		FA279F982B916049009F4E90 /* String+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F972B916049009F4E90 /* String+Adds.swift */; };
 		FA279F9D2B94010C009F4E90 /* TextFieldDynamicSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F9C2B94010C009F4E90 /* TextFieldDynamicSheet.swift */; };
 		FA279FA12B9411E1009F4E90 /* RoutineListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279FA02B9411E1009F4E90 /* RoutineListViewModel.swift */; };
+		FA2FE4A92B9BD388000AC21C /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */; };
+		FA2FE4AB2B9BD506000AC21C /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */; };
+		FA3774302BACCA1E005D2E8B /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */; };
 		FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */; };
 		FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */; };
 		FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */; };
@@ -56,6 +59,9 @@
 		FA279F972B916049009F4E90 /* String+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Adds.swift"; sourceTree = "<group>"; };
 		FA279F9C2B94010C009F4E90 /* TextFieldDynamicSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDynamicSheet.swift; sourceTree = "<group>"; };
 		FA279FA02B9411E1009F4E90 /* RoutineListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoutineListViewModel.swift; path = LightWeight/Modules/RoutineList/RoutineListViewModel.swift; sourceTree = SOURCE_ROOT; };
+		FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
+		FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
 		FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchRequest+Adds.swift"; sourceTree = "<group>"; };
 		FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Adds.swift"; sourceTree = "<group>"; };
 		FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Adds.swift"; sourceTree = "<group>"; };
@@ -135,6 +141,16 @@
 				FA279FA02B9411E1009F4E90 /* RoutineListViewModel.swift */,
 			);
 			path = RoutineList;
+			sourceTree = "<group>";
+		};
+		FA2FE4A72B9BD355000AC21C /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */,
+				FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */,
+				FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */,
+			);
+			path = Workout;
 			sourceTree = "<group>";
 		};
 		FA90B27B2B8EF4C700E0626E /* NSFetchRequest */ = {
@@ -281,6 +297,7 @@
 		FAC996212B8C289900793F14 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				FA2FE4A72B9BD355000AC21C /* Workout */,
 				FA279F9F2B941122009F4E90 /* RoutineList */,
 				FAC996222B8C28A200793F14 /* Routine */,
 			);
@@ -434,17 +451,20 @@
 				FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */,
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
 				FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */,
+				FA2FE4A92B9BD388000AC21C /* WorkoutView.swift in Sources */,
 				FA9570C32B8D928F00C442A9 /* ClosedRange+Adds.swift in Sources */,
 				FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */,
 				FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */,
 				FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */,
 				FA279FA12B9411E1009F4E90 /* RoutineListViewModel.swift in Sources */,
+				FA3774302BACCA1E005D2E8B /* ExerciseCell.swift in Sources */,
 				FAAD06882B6B1E4F00BA5386 /* RoutineListView.swift in Sources */,
 				FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */,
 				FA0984C32B8C064800EB869D /* DataManager.swift in Sources */,
 				FA279F982B916049009F4E90 /* String+Adds.swift in Sources */,
 				FA279F952B915E3E009F4E90 /* RoutineViewModel.swift in Sources */,
 				FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */,
+				FA2FE4AB2B9BD506000AC21C /* WorkoutViewModel.swift in Sources */,
 				FA279F932B915E2F009F4E90 /* RoutineView.swift in Sources */,
 				FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */,
 			);

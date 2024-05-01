@@ -18,9 +18,25 @@ struct RoutineView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Workouts")
-                    .frame(alignment: .center)
-                    .font(.headline)
+                ZStack {
+                    Text("Workouts")
+                        .frame(alignment: .center)
+                        .font(.headline)
+                    
+                    HStack {
+                        Spacer()
+                            .frame(maxWidth: .infinity)
+                        
+                        EditButton()
+                            .environment(\.editMode, $viewModel.editMode)
+                        
+                        Button {
+                            viewModel.isAddWorkoutSheetPresented = true
+                        } label: {
+                            Label("", systemImage: "plus")
+                        }
+                    }
+                }
                 List {
                     ForEach(viewModel.workouts) { workout in
                         Button {
@@ -30,9 +46,7 @@ struct RoutineView: View {
                         }
                     }
                     .onDelete(perform: viewModel.deleteItems)
-                    .onMove(perform: { indexSet, destination in
-                        viewModel.moveWorkout(fromOffsets: indexSet, toOffset: destination)
-                    })
+                    .onMove(perform: viewModel.moveWorkout)
                 }
                 .environment(\.editMode, $viewModel.editMode)
                 .listStyle(.plain)
@@ -44,26 +58,27 @@ struct RoutineView: View {
                     viewModel.toggleActive()
                 } label: {
                     Text(viewModel.routine.active ? "Set not active" : "Set active")
-                        .vi
+                        .contentTransition(.numericText())
+                }
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Confirm")
+                    }
+                    
+                    Button(role: .cancel) {
+                        
+                    } label: {
+                        Text("Cancel")
+                    }
                 }
             }
             .padding()
             
-        }
-        .toolbar {
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-                    .environment(\.editMode, $viewModel.editMode)
-            }
-            
-            ToolbarItem {
-                Button {
-                    viewModel.isAddWorkoutSheetPresented = true
-                } label: {
-                    Label("Add Item", systemImage: "plus")
-                }
-            }
         }
         .navigationTitle((viewModel.routine.name ?? "Unnamed routine") + (viewModel.routine.active ? " (active)" : ""))
         .navigationBarTitleDisplayMode(.inline)
@@ -76,6 +91,22 @@ struct RoutineView: View {
                 viewModel.newWorkoutText = ""
                 viewModel.isAddWorkoutSheetPresented = false
             })
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                
+                Button {
+                    
+                } label: {
+                    Text("Confirm")
+                }
+                
+                Button(role: .cancel) {
+                    
+                } label: {
+                    Text("Cancel")
+                }
+            }
         }
     }
 }
