@@ -11,6 +11,8 @@ final class Router: ObservableObject {
     
     public enum Destination: Hashable {
         case routine(RoutineEntity)
+        case workout(WorkoutEntity)
+        case newExercise
     }
     
     public func getViewForDestination(_ destination: Destination) -> some View {
@@ -18,6 +20,10 @@ final class Router: ObservableObject {
         switch destination {
         case .routine(let routine):
             view = AnyView(RoutineView(routine: routine))
+        case .workout(let workout):
+            view = AnyView(WorkoutView(workout: workout))
+        case .newExercise:
+            view = AnyView(NewExerciseView())
         default:
             view = AnyView(Text("Not implemented yet"))
         }

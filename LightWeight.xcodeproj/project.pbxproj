@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */; };
 		FA0984C32B8C064800EB869D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C22B8C064800EB869D /* DataManager.swift */; };
+		FA0A510B2BDDBF7C00FF3313 /* NewExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A510A2BDDBF7C00FF3313 /* NewExerciseView.swift */; };
 		FA279F932B915E2F009F4E90 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F922B915E2F009F4E90 /* RoutineView.swift */; };
 		FA279F952B915E3E009F4E90 /* RoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F942B915E3E009F4E90 /* RoutineViewModel.swift */; };
 		FA279F982B916049009F4E90 /* String+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F972B916049009F4E90 /* String+Adds.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightSheet.swift; sourceTree = "<group>"; };
 		FA0984C22B8C064800EB869D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FA0A510A2BDDBF7C00FF3313 /* NewExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseView.swift; sourceTree = "<group>"; };
 		FA279F922B915E2F009F4E90 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		FA279F942B915E3E009F4E90 /* RoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewModel.swift; sourceTree = "<group>"; };
 		FA279F972B916049009F4E90 /* String+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Adds.swift"; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */,
 				FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */,
 				FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */,
+				FA0A510A2BDDBF7C00FF3313 /* NewExerciseView.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				FA279FA12B9411E1009F4E90 /* RoutineListViewModel.swift in Sources */,
 				FA3774302BACCA1E005D2E8B /* ExerciseCell.swift in Sources */,
 				FAAD06882B6B1E4F00BA5386 /* RoutineListView.swift in Sources */,
+				FA0A510B2BDDBF7C00FF3313 /* NewExerciseView.swift in Sources */,
 				FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */,
 				FA0984C32B8C064800EB869D /* DataManager.swift in Sources */,
 				FA279F982B916049009F4E90 /* String+Adds.swift in Sources */,

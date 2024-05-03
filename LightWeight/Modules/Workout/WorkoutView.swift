@@ -31,7 +31,7 @@ struct WorkoutView: View {
                             .environment(\.editMode, $viewModel.editMode)
                         
                         Button {
-                            viewModel.isAddExerciseSheetPresented = true
+                            router.navigate(to: .newExercise)
                         } label: {
                             Label("", systemImage: "plus")
                         }

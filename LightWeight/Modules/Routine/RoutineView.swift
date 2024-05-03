@@ -40,7 +40,7 @@ struct RoutineView: View {
                 List {
                     ForEach(viewModel.workouts) { workout in
                         Button {
-                            //TODO: open workout
+                            router.navigate(to: .workout(workout))
                         } label: {
                             Text(workout.name ?? "Unnamed workout")
                         }
