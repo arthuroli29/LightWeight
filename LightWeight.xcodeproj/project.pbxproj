@@ -18,6 +18,7 @@
 		FA2FE4A92B9BD388000AC21C /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */; };
 		FA2FE4AB2B9BD506000AC21C /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */; };
 		FA3774302BACCA1E005D2E8B /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */; };
+		FA6930442BE47EF10011BCB7 /* PickerSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */; };
 		FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */; };
 		FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */; };
 		FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */; };
@@ -64,6 +65,7 @@
 		FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
+		FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSheetView.swift; sourceTree = "<group>"; };
 		FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchRequest+Adds.swift"; sourceTree = "<group>"; };
 		FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Adds.swift"; sourceTree = "<group>"; };
 		FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Adds.swift"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */,
 				FA279F9C2B94010C009F4E90 /* TextFieldDynamicSheet.swift */,
+				FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6930442BE47EF10011BCB7 /* PickerSheetView.swift in Sources */,
 				FA279F9D2B94010C009F4E90 /* TextFieldDynamicSheet.swift in Sources */,
 				FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */,
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
