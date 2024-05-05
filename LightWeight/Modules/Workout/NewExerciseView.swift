@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+protocol SelectionType<T> {
+    associatedtype T: Hashable
+    var selectedIndex: Int? { get }
+    var availableValues: [T] { get }
+}
+
+struct RepCountSelection: SelectionType {
+    typealias T = Int
+    
+    let availableValues: [Int] = Array(1...20)
+    var selectedIndex: Int?
+}
+
 final class NewExerciseViewModel: ObservableObject {
     
     struct ExerciseSet {
@@ -16,15 +29,24 @@ final class NewExerciseViewModel: ObservableObject {
     }
     
     @Published var sets: [ExerciseSet] = (0..<4).map { ExerciseSet(order: $0, repCount: 12, restTime: 60) }
-    @Published var selectedSetIndex: Int?
-    @Published var isPickerPresented: Bool = false {
+    var uneditedSets: [ExerciseSet]?
+    @Published var selected: (any SelectionType)? {
         didSet {
-            if !isPickerPresented {
-                selectedSetIndex = nil
-                selectedSetPreviousNumber = nil
+            if selected != nil {
+                uneditedSets = sets
+                isPickerPresented = true
             }
         }
     }
+    @Published var isPickerPresented: Bool = false {
+        didSet {
+            if !isPickerPresented && selected != nil {
+                selected = nil
+            }
+        }
+    }
+    
+    var notEditedSets: [ExerciseSet]?
     
     func addSet() {
         sets.append(ExerciseSet(order: sets.count, repCount: sets.last!.repCount, restTime: sets.last!.restTime))
@@ -34,7 +56,31 @@ final class NewExerciseViewModel: ObservableObject {
         sets = sets.dropLast()
     }
     
-    var selectedSetPreviousNumber: Int?
+    func undo() {
+        if let uneditedSets = uneditedSets {
+            sets = uneditedSets
+            self.uneditedSets = nil
+        }
+    }
+    
+    func selectNewValue(_ value: Int) {
+        if selected is RepCountSelection {
+            if let selectedIndex = selected?.selectedIndex {
+                sets[selectedIndex].repCount = value
+            } else {
+                sets.mutateEach { set in
+                    set.repCount = value
+                }
+            }
+        }
+    }
+    
+    func getInitialValue() -> Int {
+        if let selectedIndex = selected?.selectedIndex {
+            return sets[selectedIndex].repCount
+        }
+        return sets.first!.repCount
+    }
 }
 
 struct NewExerciseView: View {
@@ -73,16 +119,16 @@ struct NewExerciseView: View {
                 
                 ForEach(viewModel.sets, id: \.order) { set in
                     Button {
-                        let selectedIndex = set.order == viewModel.selectedSetIndex ? nil : set.order
-                        viewModel.selectedSetIndex = selectedIndex
-                        viewModel.isPickerPresented = selectedIndex != nil
-                        viewModel.selectedSetPreviousNumber = selectedIndex == nil ? nil : viewModel.sets[selectedIndex!].repCount
-                        
+                        let selectedIndex = viewModel.selected is RepCountSelection && viewModel.selected?.selectedIndex == set.order ? nil : set.order
+                        viewModel.selected = selectedIndex == nil ? nil : RepCountSelection(selectedIndex: selectedIndex)
                     } label: {
                         Text("\(set.repCount)")
                             .font(.system(size: 25))
-                            .foregroundColor(viewModel.selectedSetIndex == set.order ? .blue : .primary)
+                            .foregroundColor(viewModel.selected is RepCountSelection && (viewModel.selected?.selectedIndex == nil || viewModel.selected?.selectedIndex == set.order) ? .blue : .primary)
                             .frame(maxWidth: .infinity)
+                    }
+                    .supportsLongPress {
+                        viewModel.selected = viewModel.selected is RepCountSelection && viewModel.selected?.selectedIndex == nil ? nil : RepCountSelection(selectedIndex: nil)
                     }
                 }
                 
@@ -106,20 +152,29 @@ struct NewExerciseView: View {
                 .scaledToFit()
                 .disabled(viewModel.sets.count == 6)
             }
-            .padding(.horizontal, 20)
             
             Spacer()
         }
         .frame(maxWidth: .infinity)
-        .sheet(isPresented: $viewModel.isPickerPresented, content: {
-            PickerSheetView<Int>(selectedValue: $viewModel.sets[viewModel.selectedSetIndex!].repCount,
-                            isPresented: $viewModel.isPickerPresented,
-                            previousValue: viewModel.selectedSetPreviousNumber,
-                            values: Array(1...20))
-        })
+        .padding(.horizontal, 20)
+        .sheet(isPresented: $viewModel.isPickerPresented) {
+            PickerSheetView<Int>(isPresented: $viewModel.isPickerPresented,
+                                 values: viewModel.selected?.availableValues as? [Int] ?? [],
+                                 initialValue: viewModel.getInitialValue(),
+                                 didSelect: { value in viewModel.selectNewValue(value) },
+                                 didCancel: { viewModel.undo() })
+        }
     }
 }
 
 #Preview {
     NewExerciseView()
+}
+
+extension MutableCollection {
+    mutating func mutateEach(_ body: (inout Element) throws -> Void) rethrows {
+        for index in self.indices {
+            try body(&self[index])
+        }
+    }
 }
