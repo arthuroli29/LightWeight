@@ -34,16 +34,15 @@ struct NewExerciseView: View {
                 
                 ForEach(viewModel.sets, id: \.order) { set in
                     Button {
-                        let selectedIndex = viewModel.selected is RepCountSelection && viewModel.selected?.selectedIndex == set.order ? nil : set.order
-                        viewModel.selected = selectedIndex == nil ? nil : RepCountSelection(selectedIndex: selectedIndex)
+                        viewModel.selectOne(.repCount, at: set.order)
                     } label: {
                         Text("\(set.repCount)")
                             .font(.system(size: 25))
-                            .foregroundColor(viewModel.selected is RepCountSelection && (viewModel.selected?.selectedIndex == nil || viewModel.selected?.selectedIndex == set.order) ? .blue : .primary)
+                            .foregroundColor(viewModel.selected?.type == .repCount && (viewModel.selected?.selectedIndex == nil || viewModel.selected?.selectedIndex == set.order) ? .blue : .primary)
                             .frame(maxWidth: .infinity)
                     }
                     .supportsLongPress {
-                        viewModel.selected = viewModel.selected is RepCountSelection && viewModel.selected?.selectedIndex == nil ? nil : RepCountSelection(selectedIndex: nil)
+                        viewModel.selectAll(.repCount)
                     }
                 }
                 
@@ -63,6 +62,13 @@ struct NewExerciseView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 20)
+//        .sheet(item: $viewModel.selected) { selected in
+//            PickerSheetView<Int>(isPresented: $viewModel.isPickerPresented,
+//                                             values: viewModel.selected?.availableValues as? [Int] ?? [],
+//                                             initialValue: viewModel.getInitialValue(),
+//                                             didSelect: { value in viewModel.selectNewValue(value) },
+//                                             didCancel: { viewModel.undo() })
+//        }
         .sheet(isPresented: $viewModel.isPickerPresented) {
             PickerSheetView<Int>(isPresented: $viewModel.isPickerPresented,
                                  values: viewModel.selected?.availableValues as? [Int] ?? [],

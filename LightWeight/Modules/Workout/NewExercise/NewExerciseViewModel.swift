@@ -7,17 +7,28 @@
 
 import Foundation
 
-protocol SelectionType<T> {
-    associatedtype T: Hashable
-    var selectedIndex: Int? { get }
-    var availableValues: [T] { get }
+enum NewExerciseSelectionType {
+    case repCount
+    case restTime
+    
+    func availableValues() -> [Int] {
+        switch self {
+        case .repCount:
+            return Array(1...20)
+        case .restTime:
+            return (1...60).map { $0 * 5 }
+        }
+    }
 }
 
-struct RepCountSelection: SelectionType {
-    typealias T = Int
+struct NewExerciseSelection: Identifiable {
+    var id: UUID = UUID()
     
-    let availableValues: [Int] = Array(1...20)
-    var selectedIndex: Int?
+    let type: NewExerciseSelectionType
+    let selectedIndex: Int?
+    var availableValues: [Int] {
+        type.availableValues()
+    }
 }
 
 final class NewExerciseViewModel: ObservableObject {
@@ -30,7 +41,7 @@ final class NewExerciseViewModel: ObservableObject {
     
     @Published var sets: [ExerciseSet] = (0..<4).map { ExerciseSet(order: $0, repCount: 12, restTime: 60) }
     var uneditedSets: [ExerciseSet]?
-    @Published var selected: (any SelectionType)? {
+    @Published var selected: NewExerciseSelection? {
         didSet {
             if selected != nil {
                 uneditedSets = sets
@@ -64,7 +75,7 @@ final class NewExerciseViewModel: ObservableObject {
     }
     
     func selectNewValue(_ value: Int) {
-        if selected is RepCountSelection {
+        if case .repCount = selected?.type {
             if let selectedIndex = selected?.selectedIndex {
                 sets[selectedIndex].repCount = value
             } else {
@@ -80,5 +91,14 @@ final class NewExerciseViewModel: ObservableObject {
             return sets[selectedIndex].repCount
         }
         return sets.first!.repCount
+    }
+    
+    func selectOne(_ type: NewExerciseSelectionType, at index: Int) {
+        let selectedIndex = selected?.type == type && selected?.selectedIndex == index ? nil : index
+        selected = selectedIndex == nil ? nil : NewExerciseSelection(type: type, selectedIndex: selectedIndex)
+    }
+    
+    func selectAll(_ type: NewExerciseSelectionType) {
+        selected = selected?.type == type && selected?.selectedIndex == nil ? nil : NewExerciseSelection(type: type, selectedIndex: nil)
     }
 }
