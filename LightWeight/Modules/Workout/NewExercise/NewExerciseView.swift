@@ -17,9 +17,6 @@ struct NewExerciseView: View {
             Spacer()
                 .frame(height: 20)
             
-            Text("Reps")
-                .font(.system(size: 20))
-            
             HStack {
                 
                 Button {
@@ -32,6 +29,31 @@ struct NewExerciseView: View {
                 }
                 .disabled(viewModel.sets.count == 1)
                 
+                Text("Sets")
+                    .font(.system(size: 25, weight: .medium))
+                
+                Button {
+                    withAnimation {
+                        viewModel.addSet()
+                    }
+                } label: {
+                    Image(systemName: "plus")
+                        .roundedStyle()
+                }
+                .scaledToFit()
+                .disabled(viewModel.sets.count == 6)
+            }
+            
+            Spacer()
+                .frame(height: 30)
+            
+            Text("Reps")
+                .font(.system(size: 22))
+            
+            Spacer()
+                .frame(height: 10)
+            
+            HStack {
                 ForEach(viewModel.sets, id: \.order) { set in
                     Button {
                         viewModel.selectOne(.repCount, at: set.order)
@@ -45,17 +67,33 @@ struct NewExerciseView: View {
                         viewModel.selectAll(.repCount)
                     }
                 }
-                
-                Button {
-                    withAnimation {
-                        viewModel.addSet()
+            }
+            
+            Divider()
+            
+            Spacer()
+                .frame(height: 25)
+            
+            Text("Rest time")
+                .font(.system(size: 22))
+            
+            Spacer()
+                .frame(height: 10)
+            
+            HStack {
+                ForEach(viewModel.sets, id: \.order) { set in
+                    Button {
+                        viewModel.selectOne(.restTime, at: set.order)
+                    } label: {
+                        Text("\(set.restTime)")
+                            .font(.system(size: 25))
+                            .foregroundColor(viewModel.selected?.type == .restTime && (viewModel.selected?.selectedIndex == nil || viewModel.selected?.selectedIndex == set.order) ? .blue : .primary)
+                            .frame(maxWidth: .infinity)
                     }
-                } label: {
-                    Image(systemName: "plus")
-                        .roundedStyle()
+                    .supportsLongPress {
+                        viewModel.selectAll(.restTime)
+                    }
                 }
-                .scaledToFit()
-                .disabled(viewModel.sets.count == 6)
             }
             
             Spacer()

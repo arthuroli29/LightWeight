@@ -19,6 +19,15 @@ enum NewExerciseSelectionType {
             return (1...60).map { $0 * 5 }
         }
     }
+    
+    func getKeyPath() -> WritableKeyPath<ExerciseSet, Int> {
+        switch self {
+        case .repCount:
+            \ExerciseSet.repCount
+        case .restTime:
+            \ExerciseSet.restTime
+        }
+    }
 }
 
 struct NewExerciseSelection: Identifiable {
@@ -31,13 +40,13 @@ struct NewExerciseSelection: Identifiable {
     }
 }
 
+struct ExerciseSet {
+    let order: Int
+    var repCount: Int
+    var restTime: Int
+}
+
 final class NewExerciseViewModel: ObservableObject {
-    
-    struct ExerciseSet {
-        let order: Int
-        var repCount: Int
-        var restTime: Int
-    }
     
     @Published var sets: [ExerciseSet] = (0..<4).map { ExerciseSet(order: $0, repCount: 12, restTime: 60) }
     var uneditedSets: [ExerciseSet]?
@@ -75,22 +84,20 @@ final class NewExerciseViewModel: ObservableObject {
     }
     
     func selectNewValue(_ value: Int) {
-        if case .repCount = selected?.type {
-            if let selectedIndex = selected?.selectedIndex {
-                sets[selectedIndex].repCount = value
-            } else {
-                sets.mutateEach { set in
-                    set.repCount = value
-                }
+        if let selected = selected, let selectedIndex = selected.selectedIndex {
+            sets[selectedIndex][keyPath: selected.type.getKeyPath()] = value
+        } else {
+            sets.mutateEach { set in
+                set[keyPath: selected!.type.getKeyPath()] = value
             }
         }
     }
     
     func getInitialValue() -> Int {
-        if let selectedIndex = selected?.selectedIndex {
-            return sets[selectedIndex].repCount
+        if let selected = selected, let selectedIndex = selected.selectedIndex {
+            return sets[selectedIndex][keyPath: selected.type.getKeyPath()]
         }
-        return sets.first!.repCount
+        return sets.first![keyPath: selected!.type.getKeyPath()]
     }
     
     func selectOne(_ type: NewExerciseSelectionType, at index: Int) {
