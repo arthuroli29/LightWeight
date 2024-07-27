@@ -44,6 +44,15 @@ struct ExerciseSet {
     let order: Int
     var repCount: Int
     var restTime: Int
+    
+    func getText(for type: NewExerciseSelectionType) -> String {
+        switch type {
+        case .repCount:
+            return "\(repCount)"
+        case .restTime:
+            return "\(restTime)"
+        }
+    }
 }
 
 final class NewExerciseViewModel: ObservableObject {

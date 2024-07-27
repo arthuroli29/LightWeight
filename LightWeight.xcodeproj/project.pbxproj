@@ -23,6 +23,7 @@
 		FA7AB9122BE728F2004D1F37 /* NewExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB9112BE728F2004D1F37 /* NewExerciseViewModel.swift */; };
 		FA7AB9162BE7294C004D1F37 /* MutableCollection+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB9152BE7294C004D1F37 /* MutableCollection+Adds.swift */; };
 		FA7AB9192BE72BC6004D1F37 /* Image+Adds(Modifiers).swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB9182BE72BC6004D1F37 /* Image+Adds(Modifiers).swift */; };
+		FA7F16B02C549C6E007B2082 /* NewExerciseSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F16AF2C549C6E007B2082 /* NewExerciseSelectionView.swift */; };
 		FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */; };
 		FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */; };
 		FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */; };
@@ -74,6 +75,7 @@
 		FA7AB9112BE728F2004D1F37 /* NewExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseViewModel.swift; sourceTree = "<group>"; };
 		FA7AB9152BE7294C004D1F37 /* MutableCollection+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MutableCollection+Adds.swift"; sourceTree = "<group>"; };
 		FA7AB9182BE72BC6004D1F37 /* Image+Adds(Modifiers).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Adds(Modifiers).swift"; sourceTree = "<group>"; };
+		FA7F16AF2C549C6E007B2082 /* NewExerciseSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseSelectionView.swift; sourceTree = "<group>"; };
 		FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchRequest+Adds.swift"; sourceTree = "<group>"; };
 		FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Adds.swift"; sourceTree = "<group>"; };
 		FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Adds.swift"; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			children = (
 				FA0A510A2BDDBF7C00FF3313 /* NewExerciseView.swift */,
 				FA7AB9112BE728F2004D1F37 /* NewExerciseViewModel.swift */,
+				FA7F16AF2C549C6E007B2082 /* NewExerciseSelectionView.swift */,
 			);
 			path = NewExercise;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				FA7AB9192BE72BC6004D1F37 /* Image+Adds(Modifiers).swift in Sources */,
 				FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */,
 				FA279FA12B9411E1009F4E90 /* RoutineListViewModel.swift in Sources */,
+				FA7F16B02C549C6E007B2082 /* NewExerciseSelectionView.swift in Sources */,
 				FA3774302BACCA1E005D2E8B /* ExerciseCell.swift in Sources */,
 				FAAD06882B6B1E4F00BA5386 /* RoutineListView.swift in Sources */,
 				FA0A510B2BDDBF7C00FF3313 /* NewExerciseView.swift in Sources */,
