@@ -8,7 +8,8 @@
 import CoreData
 
 extension NSFetchRequest {
-    @objc @discardableResult func with(sortDescriptors: [NSSortDescriptor]) -> Self {
+    @discardableResult
+    @objc func with(sortDescriptors: [NSSortDescriptor]) -> Self {
         self.sortDescriptors = sortDescriptors
         return self
     }

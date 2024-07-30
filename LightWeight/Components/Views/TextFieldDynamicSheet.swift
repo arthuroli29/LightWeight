@@ -16,21 +16,20 @@ struct TextFieldDynamicSheet: View {
     @Binding var text: String
     let onDone: (() -> Void)
     let onCancel: (() -> Void)
-    
+
     var body: some View {
         DynamicHeightSheet {
             VStack {
-                
                 Spacer(minLength: 10)
-                
+
                 TextField("Routine name", text: $text, axis: .vertical)
                     .padding(10)
                     .background(Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .shadow(radius: 10)
-                
+
                 Spacer(minLength: 40)
-                
+
                 Button {
                     onDone()
                 } label: {
@@ -40,9 +39,9 @@ struct TextFieldDynamicSheet: View {
                 }
                 .padding(.horizontal)
                 .buttonStyle(.borderedProminent)
-                
+
                 Spacer(minLength: 15)
-                
+
                 Button(role: .destructive) {
                     onCancel()
                 } label: {

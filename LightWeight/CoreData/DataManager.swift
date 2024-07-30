@@ -16,13 +16,12 @@ enum DataManagerType {
 }
 
 class DataManager: NSObject, ObservableObject {
-    
     static let shared = DataManager(type: .normal)
     static let preview = DataManager(type: .preview)
     static let testing = DataManager(type: .testing)
-    
+
     public var managedObjectContext: NSManagedObjectContext
-    
+
     private init(type: DataManagerType) {
         switch type {
         case .normal:
@@ -36,12 +35,12 @@ class DataManager: NSObject, ObservableObject {
             self.managedObjectContext = persistentStore.container.viewContext
         }
         super.init()
-        
+
         if type == .preview {
             setUpMockData()
         }
     }
-    
+
     private func setUpMockData() {
         for number in 0..<10 {
             let newItem = RoutineEntity(dataManager: self)
@@ -49,10 +48,10 @@ class DataManager: NSObject, ObservableObject {
             newItem.name = "Routine \(number)"
             newItem.active = number == 4
         }
-        
+
         self.saveData()
     }
-    
+
     public func saveData() {
         guard managedObjectContext.hasChanges else { return }
         do {
@@ -61,7 +60,7 @@ class DataManager: NSObject, ObservableObject {
             assertionFailure("Unresolved error saving context: \(error.localizedDescription)")
         }
     }
-    
+
     public func fetchData<T: NSManagedObject>(fetchRequest: NSFetchRequest<T>) -> [T] {
         do {
             return try managedObjectContext.fetch(fetchRequest)
@@ -70,17 +69,17 @@ class DataManager: NSObject, ObservableObject {
             return []
         }
     }
-    
+
     public func deleteEntities(_ entities: [NSManagedObject]) {
         entities.forEach { entity in
             managedObjectContext.delete(entity)
         }
     }
-    
+
     public func deleteEntity(_ entity: NSManagedObject) {
         managedObjectContext.delete(entity)
     }
-    
+
     func fetchActiveRoutine() -> RoutineEntity? {
         let fetchRequest = NSFetchRequest<RoutineEntity>(entityName: "RoutineEntity")
         fetchRequest.predicate = NSPredicate(format: "active == YES")

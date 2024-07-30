@@ -9,11 +9,10 @@ import SwiftUI
 
 @main
 struct LightWeightApp: App {
-    
     let dataManager = DataManager.shared
-    
+
     @ObservedObject var router = Router()
-    
+
     init() {
         if let activeRoutine = dataManager.fetchActiveRoutine() {
             router.navigate(to: .routine(activeRoutine))

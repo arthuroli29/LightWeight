@@ -15,17 +15,16 @@ struct PickerSheetView<T: Hashable>: View {
         self.didSelect = didSelect
         self.didCancel = didCancel
     }
-    
+
     @Binding var isPresented: Bool
     @State var selectedValue: T
     let values: [T]
     let didCancel: () -> Void
     let didSelect: (T) -> Void
-    
+
     var body: some View {
         DynamicHeightSheet {
             VStack(spacing: 0) {
-                
                 HStack {
                     Button {
                         didCancel()
@@ -33,18 +32,17 @@ struct PickerSheetView<T: Hashable>: View {
                     } label: {
                         Text("Cancel")
                     }
-                    
+
                     Spacer()
-                    
+
                     Button {
                         isPresented = false
                     } label: {
                         Text("Done")
                     }
-                    
                 }
                 .padding()
-                
+
                 Picker("Picker", selection: $selectedValue) {
                     ForEach(values, id: \.self) { item in
                         Text("\(item)")
@@ -64,7 +62,13 @@ struct PickerSheetView<T: Hashable>: View {
 #Preview {
     Color.blue
         .ignoresSafeArea()
-        .sheet(isPresented: .constant(true), content: {
-            PickerSheetView(isPresented: .constant(true), values: Array(0...20), initialValue: 10, didSelect: { selectedValue in }, didCancel: {})
-        })
+        .sheet(isPresented: .constant(true)) {
+            PickerSheetView(
+                isPresented: .constant(true),
+                values: Array(0...20),
+                initialValue: 10,
+                didSelect: { _ in },
+                didCancel: {}
+            )
+        }
 }

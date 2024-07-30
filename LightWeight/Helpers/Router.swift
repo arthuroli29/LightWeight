@@ -8,13 +8,12 @@
 import SwiftUI
 
 final class Router: ObservableObject {
-    
     public enum Destination: Hashable {
         case routine(RoutineEntity)
         case workout(WorkoutEntity)
         case newExercise
     }
-    
+
     public func getViewForDestination(_ destination: Destination) -> some View {
         let view: AnyView
         switch destination {
@@ -24,23 +23,21 @@ final class Router: ObservableObject {
             view = AnyView(WorkoutView(workout: workout))
         case .newExercise:
             view = AnyView(NewExerciseView())
-        default:
-            view = AnyView(Text("Not implemented yet"))
         }
         return view
     }
 
-    
+
     @Published var navPath = NavigationPath()
-    
+
     func navigate(to destination: Destination) {
         navPath.append(destination)
     }
-    
+
     func navigateBack() {
         navPath.removeLast()
     }
-    
+
     func navigateToRoot() {
         navPath.removeLast(navPath.count)
     }

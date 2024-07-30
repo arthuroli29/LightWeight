@@ -9,10 +9,16 @@ import CoreData
 
 extension NSFetchedResultsController {
     @objc convenience init(fetchRequest: NSFetchRequest<ResultType>, dataManager: DataManager) {
-        self.init(fetchRequest: fetchRequest, managedObjectContext: dataManager.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        self.init(
+            fetchRequest: fetchRequest,
+            managedObjectContext: dataManager.managedObjectContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
     }
-    
-    @objc @discardableResult func with(delegate: NSFetchedResultsControllerDelegate) -> Self {
+
+    @discardableResult
+    @objc func with(delegate: NSFetchedResultsControllerDelegate) -> Self {
         self.delegate = delegate
         return self
     }

@@ -8,10 +8,7 @@
 import Foundation
 
 extension String {
-    
     public func emptyDefault(_ defaultString: String) -> Self {
         return isEmpty ? defaultString : self
     }
-        
-    
 }

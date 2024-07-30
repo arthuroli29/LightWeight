@@ -10,8 +10,8 @@ import Foundation
 enum NewExerciseSelectionType {
     case repCount
     case restTime
-    
-    func availableValues() -> [Int] {
+
+    var availableValues: [Int] {
         switch self {
         case .repCount:
             return Array(1...20)
@@ -19,8 +19,8 @@ enum NewExerciseSelectionType {
             return (1...60).map { $0 * 5 }
         }
     }
-    
-    func getKeyPath() -> WritableKeyPath<ExerciseSet, Int> {
+
+    var keyPath: WritableKeyPath<ExerciseSet, Int> {
         switch self {
         case .repCount:
             \ExerciseSet.repCount
@@ -28,15 +28,24 @@ enum NewExerciseSelectionType {
             \ExerciseSet.restTime
         }
     }
+
+    var defaultValue: Int {
+        switch self {
+        case .repCount:
+            return 12
+        case .restTime:
+            return 60
+        }
+    }
 }
 
 struct NewExerciseSelection: Identifiable {
-    var id: UUID = UUID()
-    
+    var id = UUID()
+
     let type: NewExerciseSelectionType
     let selectedIndex: Int?
     var availableValues: [Int] {
-        type.availableValues()
+        type.availableValues
     }
 }
 
@@ -44,7 +53,7 @@ struct ExerciseSet {
     let order: Int
     var repCount: Int
     var restTime: Int
-    
+
     func getText(for type: NewExerciseSelectionType) -> String {
         switch type {
         case .repCount:
@@ -56,8 +65,13 @@ struct ExerciseSet {
 }
 
 final class NewExerciseViewModel: ObservableObject {
-    
-    @Published var sets: [ExerciseSet] = (0..<4).map { ExerciseSet(order: $0, repCount: 12, restTime: 60) }
+    @Published var sets: [ExerciseSet] = (0..<4).map {
+        ExerciseSet(
+        order: $0,
+        repCount: NewExerciseSelectionType.repCount.defaultValue,
+        restTime: NewExerciseSelectionType.restTime.defaultValue
+        )
+    }
     var uneditedSets: [ExerciseSet]?
     @Published var selected: NewExerciseSelection? {
         didSet {
@@ -74,47 +88,55 @@ final class NewExerciseViewModel: ObservableObject {
             }
         }
     }
-    
+
     var notEditedSets: [ExerciseSet]?
-    
+
     func addSet() {
-        sets.append(ExerciseSet(order: sets.count, repCount: sets.last!.repCount, restTime: sets.last!.restTime))
+        sets.append(ExerciseSet(
+            order: sets.count,
+            repCount: sets.last?.repCount ?? NewExerciseSelectionType.repCount.defaultValue,
+            restTime: sets.last?.restTime ?? NewExerciseSelectionType.restTime.defaultValue
+        ))
     }
-    
+
     func deleteSet() {
         sets = sets.dropLast()
     }
-    
+
     func undo() {
         if let uneditedSets = uneditedSets {
             sets = uneditedSets
             self.uneditedSets = nil
         }
     }
-    
+
     func selectNewValue(_ value: Int) {
-        if let selected = selected, let selectedIndex = selected.selectedIndex {
-            sets[selectedIndex][keyPath: selected.type.getKeyPath()] = value
+        guard let selected else { return }
+        if let selectedIndex = selected.selectedIndex {
+            sets[selectedIndex][keyPath: selected.type.keyPath] = value
         } else {
             sets.mutateEach { set in
-                set[keyPath: selected!.type.getKeyPath()] = value
+                set[keyPath: selected.type.keyPath] = value
             }
         }
     }
-    
+
     func getInitialValue() -> Int {
-        if let selected = selected, let selectedIndex = selected.selectedIndex {
-            return sets[selectedIndex][keyPath: selected.type.getKeyPath()]
+        guard let selected else { return 10 }
+        if let selectedIndex = selected.selectedIndex {
+            return sets[selectedIndex][keyPath: selected.type.keyPath]
         }
-        return sets.first![keyPath: selected!.type.getKeyPath()]
+        return sets.first?[keyPath: selected.type.keyPath] ?? 10
     }
-    
+
     func selectOne(_ type: NewExerciseSelectionType, at index: Int) {
         let selectedIndex = selected?.type == type && selected?.selectedIndex == index ? nil : index
         selected = selectedIndex == nil ? nil : NewExerciseSelection(type: type, selectedIndex: selectedIndex)
     }
-    
+
     func selectAll(_ type: NewExerciseSelectionType) {
-        selected = selected?.type == type && selected?.selectedIndex == nil ? nil : NewExerciseSelection(type: type, selectedIndex: nil)
+        selected = selected?.type == type && selected?.selectedIndex == nil ?
+        nil :
+        NewExerciseSelection(type: type, selectedIndex: nil)
     }
 }

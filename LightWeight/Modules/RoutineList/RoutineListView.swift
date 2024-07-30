@@ -10,11 +10,10 @@ import SwiftUI
 struct RoutineListView: View {
     @EnvironmentObject var router: Router
     @StateObject var viewModel = RoutineListViewModel()
-    
+
     var body: some View {
         NavigationView {
-            VStack
-            {
+            VStack {
                 List {
                     ForEach(viewModel.routines) { routine in
                         Button {
@@ -32,11 +31,10 @@ struct RoutineListView: View {
             .padding()
             .navigationTitle("Routines")
             .toolbar {
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-                
+
                 ToolbarItem {
                     Button {
                         viewModel.isAddRoutineSheetPresented = true
@@ -46,15 +44,16 @@ struct RoutineListView: View {
                 }
             }
             .sheet(isPresented: $viewModel.isAddRoutineSheetPresented) {
-                
-                TextFieldDynamicSheet(text: $viewModel.newRoutineText,
-                onDone:{
-                    viewModel.addRoutine()
-                    viewModel.isAddRoutineSheetPresented = false
-                }, onCancel: {
-                    viewModel.newRoutineText = ""
-                    viewModel.isAddRoutineSheetPresented = false
-                })
+                TextFieldDynamicSheet(
+                    text: $viewModel.newRoutineText,
+                    onDone: {
+                        viewModel.addRoutine()
+                        viewModel.isAddRoutineSheetPresented = false
+                    }, onCancel: {
+                        viewModel.newRoutineText = ""
+                        viewModel.isAddRoutineSheetPresented = false
+                    }
+                )
             }
         }
     }
