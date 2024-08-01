@@ -77,14 +77,11 @@ legacy_hashing: error
 
 identifier_name:
   excluded:
-    - i
     - id
-    - x
-    - y
-    - z
 
 indentation_width:
   indentation_width: 4
+  include_comments: false
 
 line_length:
   ignores_urls: true
