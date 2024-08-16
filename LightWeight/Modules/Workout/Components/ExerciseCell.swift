@@ -7,29 +7,6 @@
 
 import SwiftUI
 
-final class ExerciseCellViewModel: ObservableObject {
-    init(exercise: ExerciseEntity) {
-        self.exercise = exercise
-    }
-    @Published var exercise: ExerciseEntity
-
-    public var setsString: String? {
-        guard let sets = exercise.sets else { return nil }
-        var setsString = ""
-        for (index, set) in sets.enumerated() {
-            if let setEntity = set as? SetEntity {
-                setsString += index == 0 ? "\(setEntity.repCount)" : " / \(setEntity.repCount)"
-            }
-        }
-        //        let array = sets.enumerated().map({ index, set in
-        //            guard let setEntity = set as? SetEntity else { return "" }
-        //                return "\(setEntity.repCount)"
-        //        })
-        //        return astring + array
-        return setsString
-    }
-}
-
 struct ExerciseCell: View {
     @StateObject private var viewModel: ExerciseCellViewModel
 
@@ -40,8 +17,16 @@ struct ExerciseCell: View {
     var body: some View {
         HStack(spacing: 10) {
             Circle()
-                .foregroundStyle(Color.green)
-                .frame(width: 60, height: 60)
+                .foregroundStyle(.gray.opacity(0.25))
+                .frame(width: 50, height: 50)
+                .overlay {
+                    Image(systemName: "dumbbell.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 25, height: 25)
+                        .foregroundStyle(.accent)
+                        .rotationEffect(.degrees(35))
+                }
 
             Text(viewModel.exercise.exerciseOption?.name ?? "Unnamed exercise")
 
@@ -52,8 +37,8 @@ struct ExerciseCell: View {
         .padding(.vertical, 10)
         .padding(.horizontal, 15)
         .background {
-            RoundedRectangle(cornerRadius: 25)
-                .strokeBorder(Color.gray, lineWidth: 1)
+            RoundedRectangle(cornerRadius: 20)
+                .strokeBorder(.gray.opacity(0.25), lineWidth: 2)
                 .shadow(radius: 10)
         }
     }

@@ -19,6 +19,7 @@
 		FA2FE4AB2B9BD506000AC21C /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */; };
 		FA3774302BACCA1E005D2E8B /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */; };
 		FA6930442BE47EF10011BCB7 /* PickerSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */; };
+		FA6DE0272C6EEE56005537C3 /* ExerciseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE0262C6EEE56005537C3 /* ExerciseCellViewModel.swift */; };
 		FA7AB9102BE71231004D1F37 /* SupportsLongPress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB90F2BE71231004D1F37 /* SupportsLongPress.swift */; };
 		FA7AB9122BE728F2004D1F37 /* NewExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB9112BE728F2004D1F37 /* NewExerciseViewModel.swift */; };
 		FA7AB9162BE7294C004D1F37 /* MutableCollection+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB9152BE7294C004D1F37 /* MutableCollection+Adds.swift */; };
@@ -71,6 +72,7 @@
 		FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
 		FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSheetView.swift; sourceTree = "<group>"; };
+		FA6DE0262C6EEE56005537C3 /* ExerciseCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCellViewModel.swift; sourceTree = "<group>"; };
 		FA7AB90F2BE71231004D1F37 /* SupportsLongPress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportsLongPress.swift; sourceTree = "<group>"; };
 		FA7AB9112BE728F2004D1F37 /* NewExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseViewModel.swift; sourceTree = "<group>"; };
 		FA7AB9152BE7294C004D1F37 /* MutableCollection+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MutableCollection+Adds.swift"; sourceTree = "<group>"; };
@@ -162,12 +164,21 @@
 		FA2FE4A72B9BD355000AC21C /* Workout */ = {
 			isa = PBXGroup;
 			children = (
+				FA6DE0252C6EEE46005537C3 /* Components */,
 				FA7AB9132BE728FA004D1F37 /* NewExercise */,
 				FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */,
-				FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */,
 				FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */,
 			);
 			path = Workout;
+			sourceTree = "<group>";
+		};
+		FA6DE0252C6EEE46005537C3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */,
+				FA6DE0262C6EEE56005537C3 /* ExerciseCellViewModel.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		FA7AB90E2BE71227004D1F37 /* Modifiers */ = {
@@ -532,6 +543,7 @@
 				FA7AB9102BE71231004D1F37 /* SupportsLongPress.swift in Sources */,
 				FA9570C32B8D928F00C442A9 /* ClosedRange+Adds.swift in Sources */,
 				FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */,
+				FA6DE0272C6EEE56005537C3 /* ExerciseCellViewModel.swift in Sources */,
 				FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */,
 				FA7AB9192BE72BC6004D1F37 /* Image+Adds(Modifiers).swift in Sources */,
 				FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */,
