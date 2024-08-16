@@ -12,10 +12,32 @@ struct NewExerciseView: View {
 
     var body: some View {
         VStack {
-            Text("Exercise")
+            Rectangle()
+                .foregroundStyle(.gray.opacity(0.25))
+                .frame(maxWidth: .infinity, maxHeight: 75)
+                .cornerRadius(20)
+                .overlay {
+                    HStack {
+                        Image(systemName: "dumbbell.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                            .foregroundStyle(.accent)
+                            .rotationEffect(.degrees(35))
+
+                        Spacer()
+                            .frame(width: 10)
+
+                        Text("Choose the exercise")
+                            .font(.system(size: 18, weight: .medium))
+                            .foregroundStyle(.primary)
+                    }
+                }
+                .padding(.horizontal, 20)
+
 
             Spacer()
-                .frame(height: 20)
+                .frame(height: 50)
 
             HStack {
                 Button {
@@ -26,7 +48,7 @@ struct NewExerciseView: View {
                     Image(systemName: "minus")
                         .roundedStyle()
                 }
-                .disabled(viewModel.sets.count == 1)
+                .disabled(viewModel.isDeleteSetDisabled)
 
                 Text("Sets")
                     .font(.system(size: 25, weight: .medium))
@@ -39,20 +61,27 @@ struct NewExerciseView: View {
                     Image(systemName: "plus")
                         .roundedStyle()
                 }
-                .disabled(viewModel.sets.count == 6)
+                .disabled(viewModel.isAddSetDisabled)
             }
 
             Spacer()
                 .frame(height: 30)
 
-            NewExerciseSelectionView(title: "Reps", viewModel: viewModel, selectionType: .repCount)
+            NewExerciseSelectionView(title: "reps", viewModel: viewModel, selectionType: .repCount)
 
             Divider()
 
             Spacer()
                 .frame(height: 25)
 
-            NewExerciseSelectionView(title: "Rest time", viewModel: viewModel, selectionType: .restTime)
+            NewExerciseSelectionView(title: "rest time", viewModel: viewModel, selectionType: .restTime)
+
+            Divider()
+
+            Spacer()
+                .frame(height: 25)
+
+            NewExerciseSelectionView(title: "weight", viewModel: viewModel, selectionType: .weight)
 
             Spacer()
         }

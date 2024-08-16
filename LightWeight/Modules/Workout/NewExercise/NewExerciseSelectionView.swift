@@ -25,12 +25,12 @@ struct NewExerciseSelectionView: View {
                     Button {
                         viewModel.selectOne(selectionType, at: set.order)
                     } label: {
-                        Text(set.getText(for: selectionType))
+                        Text("\(set[keyPath: selectionType.keyPath])")
                             .font(.system(size: 25))
                             .foregroundColor(viewModel.selected?.type == selectionType &&
                                 (viewModel.selected?.selectedIndex == nil ||
                                 viewModel.selected?.selectedIndex == set.order) ?
-                                .blue :
+                                .accent :
                                 .primary)
                             .frame(maxWidth: .infinity)
                     }
@@ -44,5 +44,5 @@ struct NewExerciseSelectionView: View {
 }
 
 #Preview {
-    NewExerciseSelectionView(title: "", viewModel: .init(), selectionType: .repCount)
+    NewExerciseSelectionView(title: "test", viewModel: .init(), selectionType: .repCount)
 }

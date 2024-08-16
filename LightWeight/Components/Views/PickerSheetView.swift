@@ -60,7 +60,7 @@ struct PickerSheetView<T: Hashable>: View {
 
 
 #Preview {
-    Color.blue
+    Color.primary
         .ignoresSafeArea()
         .sheet(isPresented: .constant(true)) {
             PickerSheetView(

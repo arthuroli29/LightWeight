@@ -10,6 +10,7 @@ import Foundation
 enum NewExerciseSelectionType {
     case repCount
     case restTime
+    case weight
 
     var availableValues: [Int] {
         switch self {
@@ -17,6 +18,8 @@ enum NewExerciseSelectionType {
             return Array(1...20)
         case .restTime:
             return (1...60).map { $0 * 5 }
+        case .weight:
+            return Array(1...100)
         }
     }
 
@@ -26,15 +29,8 @@ enum NewExerciseSelectionType {
             \ExerciseSet.repCount
         case .restTime:
             \ExerciseSet.restTime
-        }
-    }
-
-    var defaultValue: Int {
-        switch self {
-        case .repCount:
-            return 12
-        case .restTime:
-            return 60
+        case .weight:
+            \ExerciseSet.weight
         }
     }
 }
@@ -50,29 +46,24 @@ struct NewExerciseSelection: Identifiable {
 }
 
 struct ExerciseSet {
+    init(order: Int, repCount: Int? = nil, restTime: Int? = nil, weight: Int? = nil) {
+        self.order = order
+        self.repCount = repCount ?? 12
+        self.restTime = restTime ?? 60
+        self.weight = weight ?? 10
+    }
+
     let order: Int
     var repCount: Int
     var restTime: Int
-
-    func getText(for type: NewExerciseSelectionType) -> String {
-        switch type {
-        case .repCount:
-            return "\(repCount)"
-        case .restTime:
-            return "\(restTime)"
-        }
-    }
+    var weight: Int
 }
 
 final class NewExerciseViewModel: ObservableObject {
     @Published var sets: [ExerciseSet] = (0..<4).map {
-        ExerciseSet(
-        order: $0,
-        repCount: NewExerciseSelectionType.repCount.defaultValue,
-        restTime: NewExerciseSelectionType.restTime.defaultValue
-        )
+        ExerciseSet(order: $0)
     }
-    var uneditedSets: [ExerciseSet]?
+    private var uneditedSets: [ExerciseSet]?
     @Published var selected: NewExerciseSelection? {
         didSet {
             if selected != nil {
@@ -94,8 +85,9 @@ final class NewExerciseViewModel: ObservableObject {
     func addSet() {
         sets.append(ExerciseSet(
             order: sets.count,
-            repCount: sets.last?.repCount ?? NewExerciseSelectionType.repCount.defaultValue,
-            restTime: sets.last?.restTime ?? NewExerciseSelectionType.restTime.defaultValue
+            repCount: sets.last?.repCount,
+            restTime: sets.last?.restTime,
+            weight: sets.last?.weight
         ))
     }
 
@@ -138,5 +130,12 @@ final class NewExerciseViewModel: ObservableObject {
         selected = selected?.type == type && selected?.selectedIndex == nil ?
         nil :
         NewExerciseSelection(type: type, selectedIndex: nil)
+    }
+
+    var isAddSetDisabled: Bool {
+        sets.count == 6
+    }
+    var isDeleteSetDisabled: Bool {
+        sets.count == 1
     }
 }
