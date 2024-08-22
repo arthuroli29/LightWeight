@@ -10,6 +10,7 @@
 		FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */; };
 		FA0984C32B8C064800EB869D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0984C22B8C064800EB869D /* DataManager.swift */; };
 		FA0A510B2BDDBF7C00FF3313 /* NewExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A510A2BDDBF7C00FF3313 /* NewExerciseView.swift */; };
+		FA12F1762C74335C00850024 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA12F1752C74335C00850024 /* SearchTextField.swift */; };
 		FA279F932B915E2F009F4E90 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F922B915E2F009F4E90 /* RoutineView.swift */; };
 		FA279F952B915E3E009F4E90 /* RoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F942B915E3E009F4E90 /* RoutineViewModel.swift */; };
 		FA279F982B916049009F4E90 /* String+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA279F972B916049009F4E90 /* String+Adds.swift */; };
@@ -20,6 +21,8 @@
 		FA3774302BACCA1E005D2E8B /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */; };
 		FA6930442BE47EF10011BCB7 /* PickerSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */; };
 		FA6DE0272C6EEE56005537C3 /* ExerciseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE0262C6EEE56005537C3 /* ExerciseCellViewModel.swift */; };
+		FA6DE0292C6EF0A8005537C3 /* RoundedBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE0282C6EF0A8005537C3 /* RoundedBorder.swift */; };
+		FA6DE02B2C6EF16D005537C3 /* ExerciseOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE02A2C6EF16D005537C3 /* ExerciseOptionsView.swift */; };
 		FA7AB9102BE71231004D1F37 /* SupportsLongPress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB90F2BE71231004D1F37 /* SupportsLongPress.swift */; };
 		FA7AB9122BE728F2004D1F37 /* NewExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB9112BE728F2004D1F37 /* NewExerciseViewModel.swift */; };
 		FA7AB9162BE7294C004D1F37 /* MutableCollection+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB9152BE7294C004D1F37 /* MutableCollection+Adds.swift */; };
@@ -63,6 +66,7 @@
 		FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightSheet.swift; sourceTree = "<group>"; };
 		FA0984C22B8C064800EB869D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FA0A510A2BDDBF7C00FF3313 /* NewExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseView.swift; sourceTree = "<group>"; };
+		FA12F1752C74335C00850024 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		FA279F922B915E2F009F4E90 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		FA279F942B915E3E009F4E90 /* RoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewModel.swift; sourceTree = "<group>"; };
 		FA279F972B916049009F4E90 /* String+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Adds.swift"; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 		FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
 		FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSheetView.swift; sourceTree = "<group>"; };
 		FA6DE0262C6EEE56005537C3 /* ExerciseCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCellViewModel.swift; sourceTree = "<group>"; };
+		FA6DE0282C6EF0A8005537C3 /* RoundedBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBorder.swift; sourceTree = "<group>"; };
+		FA6DE02A2C6EF16D005537C3 /* ExerciseOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseOptionsView.swift; sourceTree = "<group>"; };
 		FA7AB90F2BE71231004D1F37 /* SupportsLongPress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportsLongPress.swift; sourceTree = "<group>"; };
 		FA7AB9112BE728F2004D1F37 /* NewExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseViewModel.swift; sourceTree = "<group>"; };
 		FA7AB9152BE7294C004D1F37 /* MutableCollection+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MutableCollection+Adds.swift"; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 				FA0984C02B8C01DB00EB869D /* DynamicHeightSheet.swift */,
 				FA279F9C2B94010C009F4E90 /* TextFieldDynamicSheet.swift */,
 				FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */,
+				FA12F1752C74335C00850024 /* SearchTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7AB90F2BE71231004D1F37 /* SupportsLongPress.swift */,
+				FA6DE0282C6EF0A8005537C3 /* RoundedBorder.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 				FA0A510A2BDDBF7C00FF3313 /* NewExerciseView.swift */,
 				FA7AB9112BE728F2004D1F37 /* NewExerciseViewModel.swift */,
 				FA7F16AF2C549C6E007B2082 /* NewExerciseSelectionView.swift */,
+				FA6DE02A2C6EF16D005537C3 /* ExerciseOptionsView.swift */,
 			);
 			path = NewExercise;
 			sourceTree = "<group>";
@@ -540,7 +549,10 @@
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
 				FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */,
 				FA2FE4A92B9BD388000AC21C /* WorkoutView.swift in Sources */,
+				FA6DE0292C6EF0A8005537C3 /* RoundedBorder.swift in Sources */,
 				FA7AB9102BE71231004D1F37 /* SupportsLongPress.swift in Sources */,
+				FA6DE02B2C6EF16D005537C3 /* ExerciseOptionsView.swift in Sources */,
+				FA12F1762C74335C00850024 /* SearchTextField.swift in Sources */,
 				FA9570C32B8D928F00C442A9 /* ClosedRange+Adds.swift in Sources */,
 				FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */,
 				FA6DE0272C6EEE56005537C3 /* ExerciseCellViewModel.swift in Sources */,

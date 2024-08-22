@@ -36,11 +36,8 @@ struct ExerciseCell: View {
         }
         .padding(.vertical, 10)
         .padding(.horizontal, 15)
-        .background {
-            RoundedRectangle(cornerRadius: 20)
-                .strokeBorder(.gray.opacity(0.25), lineWidth: 2)
-                .shadow(radius: 10)
-        }
+        .roundedBorder(cornerRadius: 20, color: .gray.opacity(0.25), lineWidth: 2)
+        .shadow(radius: 10)
     }
 }
 

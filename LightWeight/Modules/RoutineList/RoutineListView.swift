@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct RoutineListView: View {
+    init(viewModel: RoutineListViewModel = RoutineListViewModel()) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
+    @StateObject var viewModel: RoutineListViewModel
     @EnvironmentObject var router: Router
-    @StateObject var viewModel = RoutineListViewModel()
 
     var body: some View {
         NavigationView {
@@ -60,5 +64,7 @@ struct RoutineListView: View {
 }
 
 #Preview {
-    RoutineListView().environmentObject(DataManager.preview)
+    @ObservedObject var router = Router()
+    return RoutineListView(viewModel: RoutineListViewModel(dataManager: DataManager.preview))
+        .environmentObject(router)
 }
