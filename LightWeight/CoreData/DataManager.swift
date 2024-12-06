@@ -26,8 +26,33 @@ class DataManager: NSObject, ObservableObject {
 		self.managedObjectContext = persistentStore.container.viewContext
 		super.init()
 
+		updateNativeExercises()
 		if inMemory {
 			setUpMockData()
+		}
+	}
+
+	private func updateNativeExercises() {
+		// Fetch all native exercises
+		let fetchRequest: NSFetchRequest<ExerciseOption> = ExerciseOption.fetchRequest()
+		fetchRequest.predicate = NSPredicate(format: "isNative == true")
+
+		do {
+			let nativeExercises = try managedObjectContext.fetch(fetchRequest)
+			for exercise in nativeExercises {
+				managedObjectContext.delete(exercise)
+			}
+
+			for exerciseOption in ExerciseOptionSeeding.options {
+				let exercise = ExerciseOption(dataManager: self)
+				exercise.name = exerciseOption.name
+				exercise.id = exerciseOption.id
+				exercise.isNative = true
+			}
+
+			try managedObjectContext.save()
+		} catch {
+			assertionFailure("Unresolved error saving context: \(error.localizedDescription)")
 		}
 	}
 
@@ -60,6 +85,14 @@ class DataManager: NSObject, ObservableObject {
         }
     }
 
+    func fetchEntities<T: NSManagedObject & NSFetchRequestResult>(_ entityType: T.Type) -> [T] {
+		guard let fetchRequest = entityType.fetchRequest() as? NSFetchRequest<T> else {
+			assertionFailure()
+			return []
+		}
+        return fetchData(fetchRequest: fetchRequest)
+    }
+
     public func deleteEntities(_ entities: [NSManagedObject]) {
         entities.forEach { entity in
             managedObjectContext.delete(entity)
@@ -71,7 +104,7 @@ class DataManager: NSObject, ObservableObject {
     }
 
     func fetchActiveRoutine() -> RoutineEntity? {
-        let fetchRequest = NSFetchRequest<RoutineEntity>(entityName: "RoutineEntity")
+		let fetchRequest = RoutineEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "active == YES")
 
         let results = fetchData(fetchRequest: fetchRequest)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23231" systemVersion="23G93" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ExerciseEntity" representedClassName="ExerciseEntity" syncable="YES" codeGenerationType="class">
         <relationship name="exerciseOption" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseOption" inverseName="exercises" inverseEntity="ExerciseOption"/>
         <relationship name="sets" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SetEntity" inverseName="exercise" inverseEntity="SetEntity"/>
@@ -7,6 +7,7 @@
     </entity>
     <entity name="ExerciseOption" representedClassName="ExerciseOption" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isNative" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="exercises" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseEntity" inverseName="exerciseOption" inverseEntity="ExerciseEntity"/>
     </entity>

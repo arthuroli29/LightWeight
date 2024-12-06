@@ -7,25 +7,25 @@
 
 import SwiftUI
 
-//protocol ExerciseOptionServiceProtocol {
-//    func fetchExerciseOptions() -> [ExerciseOption]
-//}
-//
-//final class ExerciseOptionService: ExerciseOptionServiceProtocol {
-//    func fetchExerciseOptions() -> [ExerciseOption] {
-//        DataManager.shared.fetchEntities(ExerciseOption.self)
-//    }
-//}
+protocol ExerciseOptionServiceProtocol {
+	func fetchExerciseOptions() -> [ExerciseOption]
+}
+
+final class ExerciseOptionService: ExerciseOptionServiceProtocol {
+	func fetchExerciseOptions() -> [ExerciseOption] {
+		DataManager.shared.fetchEntities(ExerciseOption.self)
+	}
+}
 
 class ExerciseOptionsViewModel: ObservableObject {
-//    var service: ExerciseOptionServiceProtocol
+    var service: ExerciseOptionServiceProtocol
     var dataManager: DataManager = .shared
 
-//    init(service: ExerciseOptionServiceProtocol = ExerciseOptionService(), dataManager: DataManager = .shared) {
-//        self.service = service
-//        self.dataManager = dataManager
-//        self.exercises = service.fetchExerciseOptions()
-//    }
+    init(service: ExerciseOptionServiceProtocol = ExerciseOptionService(), dataManager: DataManager = .shared) {
+        self.service = service
+        self.dataManager = dataManager
+        self.exercises = service.fetchExerciseOptions()
+    }
 
     @Published var exercises: [ExerciseOption] = [ExerciseOption(dataManager: DataManager.shared)]
     var filteredExercises: [ExerciseOption] {
