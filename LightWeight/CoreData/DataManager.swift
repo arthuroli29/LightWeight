@@ -9,37 +9,27 @@
 import Foundation
 import CoreData
 
-enum DataManagerType {
-    case normal
-    case preview
-    case testing
-}
-
 class DataManager: NSObject, ObservableObject {
-    static let shared = DataManager(type: .normal)
-    static let preview = DataManager(type: .preview)
-    static let testing = DataManager(type: .testing)
-
+    static let shared = DataManager()
     public var managedObjectContext: NSManagedObjectContext
 
-    private init(type: DataManagerType) {
-        switch type {
-        case .normal:
-            let persistentStore = PersistenceController()
-            self.managedObjectContext = persistentStore.container.viewContext
-        case .preview:
-            let persistentStore = PersistenceController(inMemory: true)
-            self.managedObjectContext = persistentStore.container.viewContext
-        case .testing:
-            let persistentStore = PersistenceController(inMemory: true)
-            self.managedObjectContext = persistentStore.container.viewContext
-        }
-        super.init()
+	override init() {
+		let inMemory = {
+			#if targetEnvironment(simulator)
+			return true
+			#else
+			return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+			#endif
+		}()
 
-        if type == .preview {
-            setUpMockData()
-        }
-    }
+		let persistentStore = PersistenceController(inMemory: inMemory)
+		self.managedObjectContext = persistentStore.container.viewContext
+		super.init()
+
+		if inMemory {
+			setUpMockData()
+		}
+	}
 
     private func setUpMockData() {
         for number in 0..<10 {

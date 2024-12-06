@@ -70,6 +70,6 @@ struct ExerciseOptionCell: View {
 
 #Preview {
     ExerciseOptionsView()
-        .environmentObject(DataManager.preview)
+        .environmentObject(DataManager.shared)
         .environmentObject(Router())
 }

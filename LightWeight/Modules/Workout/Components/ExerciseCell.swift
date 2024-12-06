@@ -43,15 +43,15 @@ struct ExerciseCell: View {
 
 #Preview {
     ExerciseCell({
-        let exerciseOption = ExerciseOption(dataManager: DataManager.preview)
+        let exerciseOption = ExerciseOption(dataManager: DataManager.shared)
         exerciseOption.name = "Bench press"
 
-        let exerciseEntity = ExerciseEntity(dataManager: DataManager.preview)
+        let exerciseEntity = ExerciseEntity(dataManager: DataManager.shared)
         exerciseEntity.exerciseOption = exerciseOption
 
         //                exerciseEntity.name = "Routine 123"
         for newSetIndex in 0...3 {
-            let set = SetEntity(dataManager: DataManager.preview)
+            let set = SetEntity(dataManager: DataManager.shared)
             set.exercise = exerciseEntity
             set.repCount = 12 - Int16(newSetIndex * 2)
             //                    set.name = "Set \(newWorkoutIndex)"

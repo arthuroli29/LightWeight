@@ -52,16 +52,16 @@ struct WorkoutView: View {
 
 #Preview {
     WorkoutView(workout: {
-        let workout = WorkoutEntity(context: DataManager.preview.managedObjectContext)
+        let workout = WorkoutEntity(context: DataManager.shared.managedObjectContext)
         for index in 0...5 {
-            let exerciseOption = ExerciseOption(dataManager: DataManager.preview)
+            let exerciseOption = ExerciseOption(dataManager: DataManager.shared)
             exerciseOption.name = "Exercise \(index)"
 
-            let exerciseEntity = ExerciseEntity(dataManager: DataManager.preview)
+            let exerciseEntity = ExerciseEntity(dataManager: DataManager.shared)
             exerciseEntity.exerciseOption = exerciseOption
 
             for newSetIndex in 0...3 {
-                let set = SetEntity(dataManager: DataManager.preview)
+                let set = SetEntity(dataManager: DataManager.shared)
                 set.exercise = exerciseEntity
                 set.repCount = 12 - Int16(newSetIndex * 2)
             }

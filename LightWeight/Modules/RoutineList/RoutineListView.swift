@@ -65,6 +65,6 @@ struct RoutineListView: View {
 
 #Preview {
     @ObservedObject var router = Router()
-    return RoutineListView(viewModel: RoutineListViewModel(dataManager: DataManager.preview))
+    return RoutineListView(viewModel: RoutineListViewModel(dataManager: DataManager.shared))
         .environmentObject(router)
 }

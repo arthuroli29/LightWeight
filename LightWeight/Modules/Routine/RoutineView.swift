@@ -108,10 +108,10 @@ struct RoutineView: View {
 
 #Preview {
     RoutineView(routine: {
-        let entity = RoutineEntity(context: DataManager.preview.managedObjectContext)
+        let entity = RoutineEntity(context: DataManager.shared.managedObjectContext)
         entity.name = "Routine 123"
         for newWorkoutIndex in 0...9 {
-            let workout = WorkoutEntity(context: DataManager.preview.managedObjectContext)
+            let workout = WorkoutEntity(context: DataManager.shared.managedObjectContext)
             workout.name = "Workout \(newWorkoutIndex)"
             workout.routine = entity
         }
