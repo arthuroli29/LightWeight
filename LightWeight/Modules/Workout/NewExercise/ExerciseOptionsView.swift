@@ -27,7 +27,7 @@ class ExerciseOptionsViewModel: ObservableObject {
         self.exercises = service.fetchExerciseOptions()
     }
 
-    @Published var exercises: [ExerciseOption] = [ExerciseOption(dataManager: DataManager.shared)]
+    @Published var exercises: [ExerciseOption] = []
     var filteredExercises: [ExerciseOption] {
         exercises.filter { exercise in
             return searchText.isEmpty ? true : exercise.name?.lowercased().contains(searchText.lowercased()) ?? false

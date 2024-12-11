@@ -12,6 +12,7 @@ final class Router: ObservableObject {
         case routine(RoutineEntity)
         case workout(WorkoutEntity)
         case newExercise
+		case exerciseOptionSelection
     }
 
     public func getViewForDestination(_ destination: Destination) -> some View {
@@ -23,6 +24,8 @@ final class Router: ObservableObject {
             view = AnyView(WorkoutView(workout: workout))
         case .newExercise:
             view = AnyView(NewExerciseView())
+		case .exerciseOptionSelection:
+			view = AnyView(ExerciseOptionsView())
         }
         return view
     }

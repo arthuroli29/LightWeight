@@ -9,31 +9,36 @@ import SwiftUI
 
 struct NewExerciseView: View {
     @StateObject var viewModel = NewExerciseViewModel()
+	@EnvironmentObject var router: Router
 
     var body: some View {
         VStack {
-            Rectangle()
-                .foregroundStyle(.gray.opacity(0.25))
-                .frame(maxWidth: .infinity, maxHeight: 75)
-                .cornerRadius(20)
-                .overlay {
-                    HStack {
-                        Image(systemName: "dumbbell.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30)
-                            .foregroundStyle(.accent)
-                            .rotationEffect(.degrees(35))
+			Button {
+				router.navigate(to: .exerciseOptionSelection)
+			} label: {
+				Rectangle()
+					.foregroundStyle(.gray.opacity(0.25))
+					.frame(maxWidth: .infinity, maxHeight: 75)
+					.cornerRadius(20)
+					.overlay {
+						HStack {
+							Image(systemName: "dumbbell.fill")
+								.resizable()
+								.aspectRatio(contentMode: .fit)
+								.frame(width: 30, height: 30)
+								.foregroundStyle(.accent)
+								.rotationEffect(.degrees(35))
 
-                        Spacer()
-                            .frame(width: 10)
+							Spacer()
+								.frame(width: 10)
 
-                        Text("Choose the exercise")
-                            .font(.system(size: 18, weight: .medium))
-                            .foregroundStyle(.primary)
-                    }
-                }
-                .padding(.horizontal, 20)
+							Text("Choose the exercise")
+								.font(.system(size: 18, weight: .medium))
+								.foregroundStyle(.primary)
+						}
+					}
+					.padding(.horizontal, 20)
+			}
 
 
             Spacer()
