@@ -13,48 +13,33 @@ class DataManager: NSObject, ObservableObject {
     static let shared = DataManager()
     public var managedObjectContext: NSManagedObjectContext
 
-	override init() {
-		let inMemory = {
-			#if targetEnvironment(simulator)
-			return true
-			#else
-			return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
-			#endif
-		}()
+        override init() {
+            let inMemory = {
+                #if targetEnvironment(simulator)
+                return true
+                #else
+                return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+                #endif
+            }()
 
-		let persistentStore = PersistenceController(inMemory: inMemory)
-		self.managedObjectContext = persistentStore.container.viewContext
-		super.init()
+            let persistentStore = PersistenceController(inMemory: inMemory)
+            self.managedObjectContext = persistentStore.container.viewContext
+            super.init()
 
-		updateNativeExercises()
-		if inMemory {
-			setUpMockData()
-		}
-	}
+            updateNativeExercises()
+            if inMemory {
+                setUpMockData()
+            }
+        }
 
-	private func updateNativeExercises() {
-		// Fetch all native exercises
-		let fetchRequest: NSFetchRequest<ExerciseOption> = ExerciseOption.fetchRequest()
-		fetchRequest.predicate = NSPredicate(format: "isNative == true")
-
-		do {
-			let nativeExercises = try managedObjectContext.fetch(fetchRequest)
-			for exercise in nativeExercises {
-				managedObjectContext.delete(exercise)
-			}
-
-			for exerciseOption in ExerciseOptionSeeding.options {
-				let exercise = ExerciseOption(dataManager: self)
-				exercise.name = exerciseOption.name
-				exercise.id = exerciseOption.id
-				exercise.isNative = true
-			}
-
-			try managedObjectContext.save()
-		} catch {
-			assertionFailure("Unresolved error saving context: \(error.localizedDescription)")
-		}
-	}
+        private func updateNativeExercises() {
+            do {
+                let seedManager = SeedManager(dataManager: self)
+                try seedManager.seedAll()
+            } catch {
+                assertionFailure("Failed to update native data: \(error.localizedDescription)")
+            }
+        }
 
     private func setUpMockData() {
         for number in 0..<10 {
@@ -86,10 +71,10 @@ class DataManager: NSObject, ObservableObject {
     }
 
     func fetchEntities<T: NSManagedObject & NSFetchRequestResult>(_ entityType: T.Type) -> [T] {
-		guard let fetchRequest = entityType.fetchRequest() as? NSFetchRequest<T> else {
-			assertionFailure()
-			return []
-		}
+        guard let fetchRequest = entityType.fetchRequest() as? NSFetchRequest<T> else {
+            assertionFailure()
+            return []
+        }
         return fetchData(fetchRequest: fetchRequest)
     }
 
@@ -104,7 +89,7 @@ class DataManager: NSObject, ObservableObject {
     }
 
     func fetchActiveRoutine() -> RoutineEntity? {
-		let fetchRequest = RoutineEntity.fetchRequest()
+        let fetchRequest = RoutineEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "active == YES")
 
         let results = fetchData(fetchRequest: fetchRequest)

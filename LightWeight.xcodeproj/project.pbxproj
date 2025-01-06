@@ -19,6 +19,8 @@
 		FA2FE4A92B9BD388000AC21C /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */; };
 		FA2FE4AB2B9BD506000AC21C /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */; };
 		FA3774302BACCA1E005D2E8B /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */; };
+		FA4BC6222D2CA3E900BDFEC9 /* SeedingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BC6202D2CA3E900BDFEC9 /* SeedingProtocols.swift */; };
+		FA4BC6232D2CA3E900BDFEC9 /* ExerciseOptionSeeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BC61F2D2CA3E900BDFEC9 /* ExerciseOptionSeeding.swift */; };
 		FA6930442BE47EF10011BCB7 /* PickerSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */; };
 		FA6DE0272C6EEE56005537C3 /* ExerciseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE0262C6EEE56005537C3 /* ExerciseCellViewModel.swift */; };
 		FA6DE0292C6EF0A8005537C3 /* RoundedBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE0282C6EF0A8005537C3 /* RoundedBorder.swift */; };
@@ -42,7 +44,6 @@
 		FAAD06A32B6B1E5100BA5386 /* LightWeightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06A22B6B1E5100BA5386 /* LightWeightUITests.swift */; };
 		FAAD06A52B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06A42B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift */; };
 		FAAD06B32B6B1F6E00BA5386 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06B22B6B1F6E00BA5386 /* Router.swift */; };
-		FADD35C32D02993C00D4FB9F /* ExerciseOptionSeeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADD35C22D02993C00D4FB9F /* ExerciseOptionSeeding.swift */; };
 		FAFCF8332B8302D400818A8A /* LightWeight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,8 @@
 		FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
+		FA4BC61F2D2CA3E900BDFEC9 /* ExerciseOptionSeeding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseOptionSeeding.swift; sourceTree = "<group>"; };
+		FA4BC6202D2CA3E900BDFEC9 /* SeedingProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedingProtocols.swift; sourceTree = "<group>"; };
 		FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSheetView.swift; sourceTree = "<group>"; };
 		FA6DE0262C6EEE56005537C3 /* ExerciseCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCellViewModel.swift; sourceTree = "<group>"; };
 		FA6DE0282C6EF0A8005537C3 /* RoundedBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBorder.swift; sourceTree = "<group>"; };
@@ -104,7 +107,6 @@
 		FAAD06A22B6B1E5100BA5386 /* LightWeightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightUITests.swift; sourceTree = "<group>"; };
 		FAAD06A42B6B1E5100BA5386 /* LightWeightUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FAAD06B22B6B1F6E00BA5386 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		FADD35C22D02993C00D4FB9F /* ExerciseOptionSeeding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseOptionSeeding.swift; sourceTree = "<group>"; };
 		FAFCF8322B8302D400818A8A /* LightWeight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LightWeight.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,6 +181,15 @@
 				FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */,
 			);
 			path = Workout;
+			sourceTree = "<group>";
+		};
+		FA4BC6212D2CA3E900BDFEC9 /* Seeding */ = {
+			isa = PBXGroup;
+			children = (
+				FA4BC61F2D2CA3E900BDFEC9 /* ExerciseOptionSeeding.swift */,
+				FA4BC6202D2CA3E900BDFEC9 /* SeedingProtocols.swift */,
+			);
+			path = Seeding;
 			sourceTree = "<group>";
 		};
 		FA6DE0252C6EEE46005537C3 /* Components */ = {
@@ -283,10 +294,10 @@
 		FA994DF02B88390F00B3834F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				FA4BC6212D2CA3E900BDFEC9 /* Seeding */,
 				FAAD06822B6B1E4F00BA5386 /* Persistence.swift */,
 				FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */,
 				FA0984C22B8C064800EB869D /* DataManager.swift */,
-				FADD35C22D02993C00D4FB9F /* ExerciseOptionSeeding.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -551,8 +562,9 @@
 				FA7AB9122BE728F2004D1F37 /* NewExerciseViewModel.swift in Sources */,
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
 				FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */,
-				FADD35C32D02993C00D4FB9F /* ExerciseOptionSeeding.swift in Sources */,
 				FA2FE4A92B9BD388000AC21C /* WorkoutView.swift in Sources */,
+				FA4BC6222D2CA3E900BDFEC9 /* SeedingProtocols.swift in Sources */,
+				FA4BC6232D2CA3E900BDFEC9 /* ExerciseOptionSeeding.swift in Sources */,
 				FA6DE0292C6EF0A8005537C3 /* RoundedBorder.swift in Sources */,
 				FA7AB9102BE71231004D1F37 /* SupportsLongPress.swift in Sources */,
 				FA6DE02B2C6EF16D005537C3 /* ExerciseOptionsView.swift in Sources */,

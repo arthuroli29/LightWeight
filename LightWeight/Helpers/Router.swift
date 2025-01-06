@@ -24,7 +24,7 @@ final class Router: ObservableObject {
             view = AnyView(WorkoutView(workout: workout))
         case .newExercise:
             view = AnyView(NewExerciseView())
-		case .exerciseOptionSelection:
+        case .exerciseOptionSelection:
 			view = AnyView(ExerciseOptionsView())
         }
         return view
