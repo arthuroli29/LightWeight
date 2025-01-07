@@ -15,8 +15,10 @@ final class WorkoutViewModel: ObservableObject {
 
         self.workout.publisher(for: \.exercises)
             .sink { [weak self] _ in
-                self?.dataManager.saveData()
-                self?.objectWillChange.send()
+                Task { @MainActor in
+                    await self?.dataManager.saveData()
+                    self?.objectWillChange.send()
+                }
             }
             .store(in: &cancellables)
     }

@@ -68,14 +68,16 @@ struct SeedManager {
         self.dataManager = dataManager
     }
 
-    func seedAll() throws {
-        try seedEntities(ExerciseOptionSeeds.self)
-        try seedEntities(MuscleGroupSeeds.self)
-        dataManager.saveData()
+    func seedAll() async throws {
+        try seedEntities(ExerciseOptionSeeds.self, removingNatives: true)
+        try seedEntities(MuscleGroupSeeds.self, removingNatives: false)
+        await dataManager.saveData()
     }
 
-    private func seedEntities<Provider: SeedProvider>(_ provider: Provider.Type) throws {
-        try removeExistingNativeEntities(Provider.SeedType.Entity.self)
+    private func seedEntities<Provider: SeedProvider>(_ provider: Provider.Type, removingNatives: Bool) throws {
+        if removingNatives {
+            try removeExistingNativeEntities(Provider.SeedType.Entity.self)
+        }
 
         for seed in provider.defaultSeeds {
             try seed.seed(into: dataManager)

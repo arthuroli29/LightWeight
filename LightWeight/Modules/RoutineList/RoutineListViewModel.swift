@@ -43,7 +43,9 @@ final class RoutineListViewModel: NSObject, ObservableObject {
             newItem.name = self.newRoutineText.emptyDefault("Unnamed routine")
             self.newRoutineText = ""
 
-            dataManager.saveData()
+            Task {
+                await dataManager.saveData()
+            }
         }
     }
 
@@ -51,7 +53,9 @@ final class RoutineListViewModel: NSObject, ObservableObject {
         withAnimation {
             offsets.map { routines[$0] }.forEach(dataManager.deleteEntity)
 
-            dataManager.saveData()
+            Task {
+                await dataManager.saveData()
+            }
         }
     }
 
@@ -64,7 +68,9 @@ final class RoutineListViewModel: NSObject, ObservableObject {
             item.order = Int16(index)
         }
 
-        dataManager.saveData()
+        Task {
+            await dataManager.saveData()
+        }
     }
 }
 
@@ -79,7 +85,9 @@ extension RoutineListViewModel: NSFetchedResultsControllerDelegate {
         guard let routineEntity = anObject as? RoutineEntity, type == .update else { return }
         if routineEntity.active {
             self.routines.filter { $0 != routineEntity }.forEach { $0.active = false }
-            self.dataManager.saveData()
+            Task {
+                await dataManager.saveData()
+            }
         }
     }
 }

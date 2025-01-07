@@ -13,35 +13,38 @@ class DataManager: NSObject, ObservableObject {
     static let shared = DataManager()
     public var managedObjectContext: NSManagedObjectContext
 
-        override init() {
-            let inMemory = {
-                #if targetEnvironment(simulator)
-                return true
-                #else
-                return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
-                #endif
-            }()
+    override init() {
+        let inMemory = {
+            #if targetEnvironment(simulator)
+            return true
+            #else
+            return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+            #endif
+        }()
 
-            let persistentStore = PersistenceController(inMemory: inMemory)
-            self.managedObjectContext = persistentStore.container.viewContext
-            super.init()
+        let persistentStore = PersistenceController(inMemory: inMemory)
+        self.managedObjectContext = persistentStore.container.viewContext
+        super.init()
 
-            updateNativeExercises()
+        Task {
+            await updateNativeExercises()
             if inMemory {
-                setUpMockData()
+                await setUpMockData()
             }
         }
+    }
 
-        private func updateNativeExercises() {
-            do {
-                let seedManager = SeedManager(dataManager: self)
-                try seedManager.seedAll()
-            } catch {
-                assertionFailure("Failed to update native data: \(error.localizedDescription)")
-            }
+    private func updateNativeExercises() async {
+        do {
+            let seedManager = SeedManager(dataManager: self)
+            try await seedManager.seedAll()
+        } catch {
+            assertionFailure("Failed to update native data: \(error.localizedDescription)")
         }
+    }
 
-    private func setUpMockData() {
+    @MainActor
+    private func setUpMockData() async {
         for number in 0..<10 {
             let newItem = RoutineEntity(dataManager: self)
             newItem.order = Int16(number)
@@ -49,13 +52,14 @@ class DataManager: NSObject, ObservableObject {
             newItem.active = number == 4
         }
 
-        self.saveData()
+        await self.saveData()
     }
 
-    public func saveData() {
+    @MainActor
+    public func saveData() async {
         guard managedObjectContext.hasChanges else { return }
         do {
-            try managedObjectContext.save()
+            try self.managedObjectContext.save()
         } catch {
             assertionFailure("Unresolved error saving context: \(error.localizedDescription)")
         }

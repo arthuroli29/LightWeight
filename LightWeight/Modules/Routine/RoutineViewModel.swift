@@ -13,10 +13,13 @@ final class RoutineViewModel: ObservableObject {
         self.dataManager = dataManager
         self.routine = routineEntity
 
-        self.routine.publisher(for: \.workouts)
+        self.routine
+            .publisher(for: \.workouts)
             .sink { [weak self] _ in
-                self?.dataManager.saveData()
-                self?.objectWillChange.send()
+                Task { @MainActor in
+                    await self?.dataManager.saveData()
+                    self?.objectWillChange.send()
+                }
             }
             .store(in: &cancellables)
     }
