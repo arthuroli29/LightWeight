@@ -19,8 +19,6 @@
 		FA2FE4A92B9BD388000AC21C /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */; };
 		FA2FE4AB2B9BD506000AC21C /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */; };
 		FA3774302BACCA1E005D2E8B /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */; };
-		FA4BC6222D2CA3E900BDFEC9 /* SeedingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BC6202D2CA3E900BDFEC9 /* SeedingProtocols.swift */; };
-		FA4BC6232D2CA3E900BDFEC9 /* ExerciseOptionSeeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BC61F2D2CA3E900BDFEC9 /* ExerciseOptionSeeding.swift */; };
 		FA6930442BE47EF10011BCB7 /* PickerSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */; };
 		FA6DE0272C6EEE56005537C3 /* ExerciseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE0262C6EEE56005537C3 /* ExerciseCellViewModel.swift */; };
 		FA6DE0292C6EF0A8005537C3 /* RoundedBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DE0282C6EF0A8005537C3 /* RoundedBorder.swift */; };
@@ -30,6 +28,10 @@
 		FA7AB9162BE7294C004D1F37 /* MutableCollection+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB9152BE7294C004D1F37 /* MutableCollection+Adds.swift */; };
 		FA7AB9192BE72BC6004D1F37 /* Image+Adds(Modifiers).swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB9182BE72BC6004D1F37 /* Image+Adds(Modifiers).swift */; };
 		FA7F16B02C549C6E007B2082 /* NewExerciseSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F16AF2C549C6E007B2082 /* NewExerciseSelectionView.swift */; };
+		FA8DE1E62D2F4409006FB71A /* SeedingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8DE1E32D2F4409006FB71A /* SeedingProtocols.swift */; };
+		FA8DE1E72D2F4409006FB71A /* ExerciseOptionSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8DE1E12D2F4409006FB71A /* ExerciseOptionSeed.swift */; };
+		FA8DE1E82D2F4409006FB71A /* MuscleGroupSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8DE1E22D2F4409006FB71A /* MuscleGroupSeed.swift */; };
+		FA8DE1E92D2F4409006FB71A /* SeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8DE1E42D2F4409006FB71A /* SeedManager.swift */; };
 		FA90B27E2B8EF4E000E0626E /* NSFetchRequest+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */; };
 		FA90B2802B8EF51900E0626E /* NSFetchedResultsController+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */; };
 		FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */; };
@@ -77,8 +79,6 @@
 		FA2FE4A82B9BD388000AC21C /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		FA2FE4AA2B9BD506000AC21C /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		FA37742F2BACCA1E005D2E8B /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
-		FA4BC61F2D2CA3E900BDFEC9 /* ExerciseOptionSeeding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseOptionSeeding.swift; sourceTree = "<group>"; };
-		FA4BC6202D2CA3E900BDFEC9 /* SeedingProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedingProtocols.swift; sourceTree = "<group>"; };
 		FA6930432BE47EF10011BCB7 /* PickerSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSheetView.swift; sourceTree = "<group>"; };
 		FA6DE0262C6EEE56005537C3 /* ExerciseCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCellViewModel.swift; sourceTree = "<group>"; };
 		FA6DE0282C6EF0A8005537C3 /* RoundedBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBorder.swift; sourceTree = "<group>"; };
@@ -88,6 +88,10 @@
 		FA7AB9152BE7294C004D1F37 /* MutableCollection+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MutableCollection+Adds.swift"; sourceTree = "<group>"; };
 		FA7AB9182BE72BC6004D1F37 /* Image+Adds(Modifiers).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Adds(Modifiers).swift"; sourceTree = "<group>"; };
 		FA7F16AF2C549C6E007B2082 /* NewExerciseSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseSelectionView.swift; sourceTree = "<group>"; };
+		FA8DE1E12D2F4409006FB71A /* ExerciseOptionSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseOptionSeed.swift; sourceTree = "<group>"; };
+		FA8DE1E22D2F4409006FB71A /* MuscleGroupSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroupSeed.swift; sourceTree = "<group>"; };
+		FA8DE1E32D2F4409006FB71A /* SeedingProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedingProtocols.swift; sourceTree = "<group>"; };
+		FA8DE1E42D2F4409006FB71A /* SeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedManager.swift; sourceTree = "<group>"; };
 		FA90B27D2B8EF4E000E0626E /* NSFetchRequest+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchRequest+Adds.swift"; sourceTree = "<group>"; };
 		FA90B27F2B8EF51900E0626E /* NSFetchedResultsController+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Adds.swift"; sourceTree = "<group>"; };
 		FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Adds.swift"; sourceTree = "<group>"; };
@@ -183,15 +187,6 @@
 			path = Workout;
 			sourceTree = "<group>";
 		};
-		FA4BC6212D2CA3E900BDFEC9 /* Seeding */ = {
-			isa = PBXGroup;
-			children = (
-				FA4BC61F2D2CA3E900BDFEC9 /* ExerciseOptionSeeding.swift */,
-				FA4BC6202D2CA3E900BDFEC9 /* SeedingProtocols.swift */,
-			);
-			path = Seeding;
-			sourceTree = "<group>";
-		};
 		FA6DE0252C6EEE46005537C3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +230,17 @@
 				FA7AB9182BE72BC6004D1F37 /* Image+Adds(Modifiers).swift */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		FA8DE1E52D2F4409006FB71A /* Seeding */ = {
+			isa = PBXGroup;
+			children = (
+				FA8DE1E12D2F4409006FB71A /* ExerciseOptionSeed.swift */,
+				FA8DE1E22D2F4409006FB71A /* MuscleGroupSeed.swift */,
+				FA8DE1E32D2F4409006FB71A /* SeedingProtocols.swift */,
+				FA8DE1E42D2F4409006FB71A /* SeedManager.swift */,
+			);
+			path = Seeding;
 			sourceTree = "<group>";
 		};
 		FA90B27B2B8EF4C700E0626E /* NSFetchRequest */ = {
@@ -294,7 +300,7 @@
 		FA994DF02B88390F00B3834F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				FA4BC6212D2CA3E900BDFEC9 /* Seeding */,
+				FA8DE1E52D2F4409006FB71A /* Seeding */,
 				FAAD06822B6B1E4F00BA5386 /* Persistence.swift */,
 				FAFCF8312B8302D400818A8A /* LightWeight.xcdatamodeld */,
 				FA0984C22B8C064800EB869D /* DataManager.swift */,
@@ -563,10 +569,12 @@
 				FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */,
 				FA0984C12B8C01DB00EB869D /* DynamicHeightSheet.swift in Sources */,
 				FA2FE4A92B9BD388000AC21C /* WorkoutView.swift in Sources */,
-				FA4BC6222D2CA3E900BDFEC9 /* SeedingProtocols.swift in Sources */,
-				FA4BC6232D2CA3E900BDFEC9 /* ExerciseOptionSeeding.swift in Sources */,
 				FA6DE0292C6EF0A8005537C3 /* RoundedBorder.swift in Sources */,
 				FA7AB9102BE71231004D1F37 /* SupportsLongPress.swift in Sources */,
+				FA8DE1E62D2F4409006FB71A /* SeedingProtocols.swift in Sources */,
+				FA8DE1E72D2F4409006FB71A /* ExerciseOptionSeed.swift in Sources */,
+				FA8DE1E82D2F4409006FB71A /* MuscleGroupSeed.swift in Sources */,
+				FA8DE1E92D2F4409006FB71A /* SeedManager.swift in Sources */,
 				FA6DE02B2C6EF16D005537C3 /* ExerciseOptionsView.swift in Sources */,
 				FA12F1762C74335C00850024 /* SearchTextField.swift in Sources */,
 				FA9570C32B8D928F00C442A9 /* ClosedRange+Adds.swift in Sources */,

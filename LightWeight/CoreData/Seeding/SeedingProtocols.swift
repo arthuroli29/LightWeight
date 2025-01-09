@@ -1,33 +1,20 @@
+//
+//  SeedingProtocols.swift
+//  LightWeight
+//
+//  Created by Arthur Oliveira on 06/01/25.
+//
+
 import Foundation
 import CoreData
 
-protocol Seedable {
-    func seed(into dataManager: DataManager) throws
+protocol Seed: CaseIterable, Hashable {
+    var id: UUID? { get }
 }
 
-protocol EntitySeedable: Seedable {
-    associatedtype Entity: NSManagedObject
-    var uniqueIdentifier: String { get }
-    static var isNativeEntity: Bool { get }
-    func configure(_ entity: Entity, dataManager: DataManager)
-}
-
-extension EntitySeedable {
-    static var isNativeEntity: Bool { return true }
-
-    func seed(into dataManager: DataManager) throws {
-        let entity = Entity(context: dataManager.managedObjectContext)
-        configure(entity, dataManager: dataManager)
-    }
-}
-
-protocol SeedProvider {
-    associatedtype SeedType: EntitySeedable
-    static var defaultSeeds: [SeedType] { get }
-}
-
-enum SeedingError: Error {
-    case entityCreationFailed
-    case configurationFailed(String)
-    case fetchRequestFailed
+protocol SeedableEntity: NSManagedObject & NSFetchRequestResult {
+    var id: UUID? { get set }
+    associatedtype SeedType: Seed
+    func configure(with seed: SeedType, using fetchedEntities: [ObjectIdentifier: [UUID: NSManagedObject]])
+    static var seedPredicate: NSPredicate? { get }
 }

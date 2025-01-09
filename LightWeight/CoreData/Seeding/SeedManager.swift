@@ -1,10 +1,15 @@
+//
+//  SeedManager.swift
+//  LightWeight
+//
+//  Created by Arthur Oliveira on 06/01/25.
+//
+
 import Foundation
 import CoreData
 
 enum SeedingError: Error {
-    case fetchRequestFailed
-    case entityCreationFailed
-    case invalidEntityType
+    case fetchRequestCreationFailed
 }
 
 struct SeedManager {
@@ -15,61 +20,64 @@ struct SeedManager {
     }
 
     func seedAll() async throws {
-        do {
-            // First seed MuscleGroups as they are referenced by ExerciseOptions
-            try updateOrCreateEntities(MuscleGroupSeeds.self)
-            try updateOrCreateEntities(ExerciseOptionSeeds.self)
-            await dataManager.saveData()
-        } catch {
-            print("Failed to seed entities: \(error)")
-            throw error
-        }
+        // First seed MuscleGroups as they are referenced by ExerciseOptions
+        var fetchedEntities: [ObjectIdentifier: [UUID: NSManagedObject]] = [:]
+        try syncEntities(of: MuscleGroup.self, using: &fetchedEntities)
+        try syncEntities(of: ExerciseOption.self, using: &fetchedEntities)
+        await dataManager.saveData()
     }
 
-    private func updateOrCreateEntities<Provider: SeedProvider>(_ provider: Provider.Type) throws 
-    where Provider.SeedType.Entity: NSManagedObject & IdentifiableEntity {
-        for seed in provider.defaultSeeds {
-            do {
-                // Try to find existing entity by ID
-                let entityName = String(describing: Provider.SeedType.Entity.self)
-                let fetchRequest = NSFetchRequest<Provider.SeedType.Entity>(entityName: entityName)
-                fetchRequest.predicate = NSPredicate(format: "id == %@", seed.uniqueIdentifier)
-                
-                let existingEntities = try dataManager.managedObjectContext.fetch(fetchRequest)
-                
-                if let existingEntity = existingEntities.first {
-                    // Update existing entity
-                    seed.configure(existingEntity, dataManager: dataManager)
-                } else {
-                    // Create new entity if it doesn't exist
-                    try seed.seed(into: dataManager)
-                }
-            } catch {
-                print("Failed to update/create entity for seed \(seed): \(error)")
-                throw error
+    private func syncEntities<Entity: SeedableEntity>(of entityType: Entity.Type, using fetchedEntities: inout [ObjectIdentifier: [UUID: NSManagedObject]]) throws {
+        let context = dataManager.managedObjectContext
+
+        guard let fetchRequest = Entity.fetchRequest() as? NSFetchRequest<Entity> else {
+            throw SeedingError.fetchRequestCreationFailed
+        }
+        fetchRequest.predicate = entityType.seedPredicate
+
+        let existingEntities = try context.fetch(fetchRequest)
+
+        let seeds = Array(Entity.SeedType.allCases)
+        let seedsById = Dictionary(uniqueKeysWithValues: seeds.map { ($0.id, $0) })
+
+        let entityTypeId = ObjectIdentifier(Entity.SeedType.self)
+        if fetchedEntities[entityTypeId] == nil {
+            fetchedEntities[entityTypeId] = [:]
+        }
+
+        for entity in existingEntities {
+            guard let entityId = entity.id else {
+                assertionFailure("Entity \(entity) should have an ID.")
+                context.delete(entity)
+                continue
+            }
+
+            if let matchingSeed = seedsById[entityId] {
+                entity.configure(with: matchingSeed, using: fetchedEntities)
+                fetchedEntities[entityTypeId]?[entityId] = entity
+            } else {
+                context.delete(entity)
             }
         }
-        
-        // Remove any native entities that are no longer in the seed data
-        try removeOrphanedNativeEntities(Provider.SeedType.Entity.self, currentIds: Set(provider.defaultSeeds.map(\.uniqueIdentifier)))
-    }
-    
-    private func removeOrphanedNativeEntities<T: NSManagedObject & IdentifiableEntity>(_ entityType: T.Type, currentIds: Set<String>) throws {
-        do {
-            let fetchRequest = NSFetchRequest<T>(entityName: String(describing: entityType))
-            fetchRequest.predicate = NSPredicate(format: "isNative == true")
-            
-            let entities = try dataManager.managedObjectContext.fetch(fetchRequest)
-            
-            for entity in entities {
-                if !currentIds.contains(entity.id?.uuidString ?? "") {
-                    print("Removing orphaned native entity: \(entity)")
-                    dataManager.deleteEntity(entity)
-                }
+
+        let existingIds = Set(existingEntities.compactMap { $0.id })
+
+        for seed in seeds {
+            guard let id = seed.id else {
+                assertionFailure("Seed \(seed) should have an ID.")
+                continue
             }
-        } catch {
-            print("Failed to remove orphaned entities: \(error)")
-            throw SeedingError.fetchRequestFailed
+            guard !existingIds.contains(id) else {
+                continue
+            }
+            let newEntity = Entity(context: context)
+            newEntity.id = seed.id
+            newEntity.configure(with: seed, using: fetchedEntities)
+            fetchedEntities[entityTypeId]?[id] = newEntity
+        }
+
+        if context.hasChanges {
+            try context.save()
         }
     }
 }

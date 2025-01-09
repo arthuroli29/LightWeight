@@ -27,14 +27,14 @@ class DataManager: NSObject, ObservableObject {
         super.init()
 
         Task {
-            await updateNativeExercises()
+            await seedNativeEntities()
             if inMemory {
                 await setUpMockData()
             }
         }
     }
 
-    private func updateNativeExercises() async {
+    private func seedNativeEntities() async {
         do {
             let seedManager = SeedManager(dataManager: self)
             try await seedManager.seedAll()
