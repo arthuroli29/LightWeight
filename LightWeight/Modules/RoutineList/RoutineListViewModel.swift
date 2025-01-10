@@ -43,9 +43,7 @@ final class RoutineListViewModel: NSObject, ObservableObject {
             newItem.name = self.newRoutineText.emptyDefault("Unnamed routine")
             self.newRoutineText = ""
 
-            Task {
-                await dataManager.saveData()
-            }
+            dataManager.saveData()
         }
     }
 
@@ -53,9 +51,7 @@ final class RoutineListViewModel: NSObject, ObservableObject {
         withAnimation {
             offsets.map { routines[$0] }.forEach(dataManager.deleteEntity)
 
-            Task {
-                await dataManager.saveData()
-            }
+            dataManager.saveData()
         }
     }
 
@@ -68,9 +64,7 @@ final class RoutineListViewModel: NSObject, ObservableObject {
             item.order = Int16(index)
         }
 
-        Task {
-            await dataManager.saveData()
-        }
+        dataManager.saveData()
     }
 }
 
@@ -85,9 +79,8 @@ extension RoutineListViewModel: NSFetchedResultsControllerDelegate {
         guard let routineEntity = anObject as? RoutineEntity, type == .update else { return }
         if routineEntity.active {
             self.routines.filter { $0 != routineEntity }.forEach { $0.active = false }
-            Task {
-                await dataManager.saveData()
-            }
+//            dataManager.saveData() // Causes crash becaue of recursive save call,
+//            TODO: gotta find another way to save which routine is "active"
         }
     }
 }

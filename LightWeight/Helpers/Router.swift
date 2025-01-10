@@ -15,6 +15,7 @@ final class Router: ObservableObject {
 		case exerciseOptionSelection
     }
 
+    @MainActor
     public func getViewForDestination(_ destination: Destination) -> some View {
         let view: AnyView
         switch destination {

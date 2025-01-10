@@ -19,12 +19,12 @@ struct SeedManager {
         self.dataManager = dataManager
     }
 
-    func seedAll() async throws {
+    func seedAll() throws {
         // First seed MuscleGroups as they are referenced by ExerciseOptions
         var fetchedEntities: [ObjectIdentifier: [UUID: NSManagedObject]] = [:]
         try syncEntities(of: MuscleGroup.self, using: &fetchedEntities)
         try syncEntities(of: ExerciseOption.self, using: &fetchedEntities)
-        await dataManager.saveData()
+        dataManager.saveData()
     }
 
     private func syncEntities<Entity: SeedableEntity>(of entityType: Entity.Type, using fetchedEntities: inout [ObjectIdentifier: [UUID: NSManagedObject]]) throws {

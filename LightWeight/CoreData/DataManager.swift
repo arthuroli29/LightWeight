@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class DataManager: NSObject, ObservableObject {
-    static let shared = DataManager()
+    nonisolated(unsafe) static let shared = DataManager() // TODO: Make this thread safe
     public var managedObjectContext: NSManagedObjectContext
 
     override init() {
@@ -26,25 +26,22 @@ class DataManager: NSObject, ObservableObject {
         self.managedObjectContext = persistentStore.container.viewContext
         super.init()
 
-        Task {
-            await seedNativeEntities()
-            if inMemory {
-                await setUpMockData()
-            }
+        seedNativeEntities()
+        if inMemory {
+            setUpMockData()
         }
     }
 
-    private func seedNativeEntities() async {
+    private func seedNativeEntities() {
         do {
             let seedManager = SeedManager(dataManager: self)
-            try await seedManager.seedAll()
+            try seedManager.seedAll()
         } catch {
             assertionFailure("Failed to update native data: \(error.localizedDescription)")
         }
     }
 
-    @MainActor
-    private func setUpMockData() async {
+    private func setUpMockData() {
         for number in 0..<10 {
             let newItem = RoutineEntity(dataManager: self)
             newItem.order = Int16(number)
@@ -52,11 +49,10 @@ class DataManager: NSObject, ObservableObject {
             newItem.active = number == 4
         }
 
-        await self.saveData()
+        self.saveData()
     }
 
-    @MainActor
-    public func saveData() async {
+    public func saveData() {
         guard managedObjectContext.hasChanges else { return }
         do {
             try self.managedObjectContext.save()

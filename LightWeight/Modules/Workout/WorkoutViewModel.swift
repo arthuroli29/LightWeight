@@ -14,11 +14,10 @@ final class WorkoutViewModel: ObservableObject {
         self.workout = workoutEntity
 
         self.workout.publisher(for: \.exercises)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                Task { @MainActor in
-                    await self?.dataManager.saveData()
-                    self?.objectWillChange.send()
-                }
+                self?.dataManager.saveData()
+                self?.objectWillChange.send()
             }
             .store(in: &cancellables)
     }
