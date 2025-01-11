@@ -15,6 +15,6 @@ protocol Seed: CaseIterable, Hashable {
 protocol SeedableEntity: NSManagedObject & NSFetchRequestResult {
     var id: UUID? { get set }
     associatedtype SeedType: Seed
-    func configure(with seed: SeedType, using fetchedEntities: [ObjectIdentifier: [UUID: NSManagedObject]])
+    func configure(with seed: SeedType, using fetchedEntities: [UUID: NSManagedObject])
     static var seedPredicate: NSPredicate? { get }
 }

@@ -32,7 +32,7 @@ enum MuscleGroupType: String, Seed {
 
 extension MuscleGroup: SeedableEntity {
     typealias SeedType = MuscleGroupType
-    func configure(with seed: MuscleGroupType, using fetchedEntities: [ObjectIdentifier: [UUID: NSManagedObject]]) {
+    func configure(with seed: MuscleGroupType, using fetchedEntities: [UUID: NSManagedObject]) {
         name = seed.rawValue
     }
     static var seedPredicate: NSPredicate? {

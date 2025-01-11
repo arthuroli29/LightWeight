@@ -21,13 +21,13 @@ struct SeedManager {
 
     func seedAll() throws {
         // First seed MuscleGroups as they are referenced by ExerciseOptions
-        var fetchedEntities: [ObjectIdentifier: [UUID: NSManagedObject]] = [:]
+        var fetchedEntities: [UUID: NSManagedObject] = [:]
         try syncEntities(of: MuscleGroup.self, using: &fetchedEntities)
         try syncEntities(of: ExerciseOption.self, using: &fetchedEntities)
         dataManager.saveData()
     }
 
-    private func syncEntities<Entity: SeedableEntity>(of entityType: Entity.Type, using fetchedEntities: inout [ObjectIdentifier: [UUID: NSManagedObject]]) throws {
+    private func syncEntities<Entity: SeedableEntity>(of entityType: Entity.Type, using fetchedEntities: inout [UUID: NSManagedObject]) throws {
         let context = dataManager.managedObjectContext
 
         guard let fetchRequest = Entity.fetchRequest() as? NSFetchRequest<Entity> else {
@@ -40,11 +40,6 @@ struct SeedManager {
         let seeds = Array(Entity.SeedType.allCases)
         let seedsById = Dictionary(uniqueKeysWithValues: seeds.map { ($0.id, $0) })
 
-        let entityTypeId = ObjectIdentifier(Entity.SeedType.self)
-        if fetchedEntities[entityTypeId] == nil {
-            fetchedEntities[entityTypeId] = [:]
-        }
-
         for entity in existingEntities {
             guard let entityId = entity.id else {
                 assertionFailure("Entity \(entity) should have an ID.")
@@ -54,7 +49,7 @@ struct SeedManager {
 
             if let matchingSeed = seedsById[entityId] {
                 entity.configure(with: matchingSeed, using: fetchedEntities)
-                fetchedEntities[entityTypeId]?[entityId] = entity
+                fetchedEntities[entityId] = entity
             } else {
                 context.delete(entity)
             }
@@ -73,7 +68,7 @@ struct SeedManager {
             let newEntity = Entity(context: context)
             newEntity.id = seed.id
             newEntity.configure(with: seed, using: fetchedEntities)
-            fetchedEntities[entityTypeId]?[id] = newEntity
+            fetchedEntities[id] = newEntity
         }
 
         if context.hasChanges {

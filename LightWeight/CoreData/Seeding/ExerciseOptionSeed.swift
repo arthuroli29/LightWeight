@@ -66,12 +66,12 @@ enum ExerciseType: String, Seed {
 
 extension ExerciseOption: SeedableEntity {
     typealias SeedType = ExerciseType
-    func configure(with seed: ExerciseType, using fetchedEntities: [ObjectIdentifier: [UUID: NSManagedObject]]) {
+    func configure(with seed: ExerciseType, using fetchedEntities: [UUID: NSManagedObject]) {
         name = seed.rawValue
         isNative = true
         let muscleGroupIds = seed.muscleGroups.compactMap { $0.id }
         let muscleGroupsEntities = muscleGroupIds.compactMap {
-            fetchedEntities[ObjectIdentifier(MuscleGroup.SeedType.self)]?[$0] as? MuscleGroup
+            fetchedEntities[$0] as? MuscleGroup
         }
         addToMuscleGroups(NSSet(array: muscleGroupsEntities))
     }
