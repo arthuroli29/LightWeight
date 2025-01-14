@@ -8,13 +8,18 @@
 import SwiftUI
 
 protocol ExerciseOptionServiceProtocol {
+    func fetchMuscleGroups() -> [MuscleGroup]
 	func fetchExerciseOptions() -> [ExerciseOption]
 }
 
 final class ExerciseOptionService: ExerciseOptionServiceProtocol {
-	func fetchExerciseOptions() -> [ExerciseOption] {
-		DataManager.shared.fetchEntities(ExerciseOption.self)
-	}
+    func fetchMuscleGroups() -> [MuscleGroup] {
+        DataManager.shared.fetchEntities(MuscleGroup.self)
+    }
+
+    func fetchExerciseOptions() -> [ExerciseOption] {
+        DataManager.shared.fetchEntities(ExerciseOption.self)
+    }
 }
 
 class ExerciseOptionsViewModel: ObservableObject {
@@ -24,10 +29,13 @@ class ExerciseOptionsViewModel: ObservableObject {
     init(service: ExerciseOptionServiceProtocol = ExerciseOptionService(), dataManager: DataManager = .shared) {
         self.service = service
         self.dataManager = dataManager
+        self.muscleGroups = service.fetchMuscleGroups()
         self.exercises = service.fetchExerciseOptions()
     }
 
     @Published var exercises: [ExerciseOption] = []
+    @Published var muscleGroups: [MuscleGroup] = []
+    @Published var selectedMuscleGroup: MuscleGroup?
     var filteredExercises: [ExerciseOption] {
         exercises.filter { exercise in
             return searchText.isEmpty ? true : exercise.name?.lowercased().contains(searchText.lowercased()) ?? false

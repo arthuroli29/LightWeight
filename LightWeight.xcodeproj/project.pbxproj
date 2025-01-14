@@ -37,6 +37,9 @@
 		FA90B2832B8EF69500E0626E /* NSManagedObject+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */; };
 		FA9570C32B8D928F00C442A9 /* ClosedRange+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9570C22B8D928F00C442A9 /* ClosedRange+Adds.swift */; };
 		FA994DF32B8839CB00B3834F /* GetHeightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */; };
+		FA9F5B2A2D35F1EC003292D9 /* MuscleGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9F5B292D35F1D4003292D9 /* MuscleGroupCell.swift */; };
+		FA9F5B312D35F2A6003292D9 /* Button+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9F5B302D35F2A3003292D9 /* Button+Adds.swift */; };
+		FA9F5B332D35FED9003292D9 /* MuscleGroupSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9F5B322D35FEC8003292D9 /* MuscleGroupSelection.swift */; };
 		FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */; };
 		FAAD06832B6B1E4F00BA5386 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06822B6B1E4F00BA5386 /* Persistence.swift */; };
 		FAAD06882B6B1E4F00BA5386 /* RoutineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD06872B6B1E4F00BA5386 /* RoutineListView.swift */; };
@@ -97,6 +100,9 @@
 		FA90B2822B8EF69500E0626E /* NSManagedObject+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Adds.swift"; sourceTree = "<group>"; };
 		FA9570C22B8D928F00C442A9 /* ClosedRange+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClosedRange+Adds.swift"; sourceTree = "<group>"; };
 		FA994DF22B8839CB00B3834F /* GetHeightModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeightModifier.swift; sourceTree = "<group>"; };
+		FA9F5B292D35F1D4003292D9 /* MuscleGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroupCell.swift; sourceTree = "<group>"; };
+		FA9F5B302D35F2A3003292D9 /* Button+Adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Adds.swift"; sourceTree = "<group>"; };
+		FA9F5B322D35FEC8003292D9 /* MuscleGroupSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroupSelection.swift; sourceTree = "<group>"; };
 		FAAD067D2B6B1E4F00BA5386 /* LightWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAD06802B6B1E4F00BA5386 /* LightWeightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightWeightApp.swift; sourceTree = "<group>"; };
 		FAAD06822B6B1E4F00BA5386 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 		FA7AB9132BE728FA004D1F37 /* NewExercise */ = {
 			isa = PBXGroup;
 			children = (
+				FA9F5B322D35FEC8003292D9 /* MuscleGroupSelection.swift */,
+				FA9F5B292D35F1D4003292D9 /* MuscleGroupCell.swift */,
 				FA0A510A2BDDBF7C00FF3313 /* NewExerciseView.swift */,
 				FA7AB9112BE728F2004D1F37 /* NewExerciseViewModel.swift */,
 				FA7F16AF2C549C6E007B2082 /* NewExerciseSelectionView.swift */,
@@ -270,6 +278,7 @@
 		FA9570C02B8D927D00C442A9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FA9F5B2F2D35F29F003292D9 /* Button */,
 				FA7AB9172BE72BBA004D1F37 /* Image */,
 				FA7AB9142BE72937004D1F37 /* MutableCollection */,
 				FA279F962B91603D009F4E90 /* String */,
@@ -315,6 +324,14 @@
 				FAAD06892B6B1E5100BA5386 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA9F5B2F2D35F29F003292D9 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				FA9F5B302D35F2A3003292D9 /* Button+Adds.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		FAAD06742B6B1E4F00BA5386 = {
@@ -563,6 +580,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6930442BE47EF10011BCB7 /* PickerSheetView.swift in Sources */,
+				FA9F5B2A2D35F1EC003292D9 /* MuscleGroupCell.swift in Sources */,
+				FA9F5B312D35F2A6003292D9 /* Button+Adds.swift in Sources */,
 				FA279F9D2B94010C009F4E90 /* TextFieldDynamicSheet.swift in Sources */,
 				FAAD06812B6B1E4F00BA5386 /* LightWeightApp.swift in Sources */,
 				FA7AB9122BE728F2004D1F37 /* NewExerciseViewModel.swift in Sources */,
@@ -575,6 +594,7 @@
 				FA8DE1E72D2F4409006FB71A /* ExerciseOptionSeed.swift in Sources */,
 				FA8DE1E82D2F4409006FB71A /* MuscleGroupSeed.swift in Sources */,
 				FA8DE1E92D2F4409006FB71A /* SeedManager.swift in Sources */,
+				FA9F5B332D35FED9003292D9 /* MuscleGroupSelection.swift in Sources */,
 				FA6DE02B2C6EF16D005537C3 /* ExerciseOptionsView.swift in Sources */,
 				FA12F1762C74335C00850024 /* SearchTextField.swift in Sources */,
 				FA9570C32B8D928F00C442A9 /* ClosedRange+Adds.swift in Sources */,
@@ -777,7 +797,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -818,7 +838,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
