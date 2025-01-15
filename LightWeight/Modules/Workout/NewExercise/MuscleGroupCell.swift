@@ -33,7 +33,8 @@ struct MuscleGroupCell: View {
                         )
                         .shadow(color: Color.accent.opacity(selected ? 0.5 : 0), radius: 20, x: 0, y: 0)
 
-                    Image(systemName: "alarm")
+                    Image(muscle.type?.image ?? .barbell)
+                        .renderingMode(.template)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .tint(.red)

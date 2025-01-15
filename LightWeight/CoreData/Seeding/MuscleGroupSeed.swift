@@ -5,7 +5,7 @@
 //  Created by Arthur Oliveira on 07/01/25.
 //
 
-import Foundation
+import SwiftUI
 import CoreData
 
 enum MuscleGroupType: String, Seed {
@@ -28,6 +28,18 @@ enum MuscleGroupType: String, Seed {
         case .core: return UUID(uuidString: "E5D9C678-B6A4-4B8C-A123-F97A29655D4D")
         }
     }
+
+    var image: ImageResource? {
+        switch self {
+        case .chest: .chest
+        case .back: .back
+        case .legs: .leg
+        case .shoulders: .shoulder
+        case .biceps: .arm
+        case .triceps: .arm
+        case .core: .core
+        }
+    }
 }
 
 extension MuscleGroup: SeedableEntity {
@@ -37,5 +49,10 @@ extension MuscleGroup: SeedableEntity {
     }
     static var seedPredicate: NSPredicate? {
         nil
+    }
+
+    var type: MuscleGroupType? {
+        guard let name else { return nil }
+        return MuscleGroupType(rawValue: name)
     }
 }
