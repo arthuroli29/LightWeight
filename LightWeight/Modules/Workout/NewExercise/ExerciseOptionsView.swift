@@ -7,35 +7,15 @@
 
 import SwiftUI
 
-protocol ExerciseOptionServiceProtocol {
-    func fetchMuscleGroups() -> [MuscleGroup]
-	func fetchExerciseOptions() -> [ExerciseOption]
-}
-
-final class ExerciseOptionService: ExerciseOptionServiceProtocol {
-    func fetchMuscleGroups() -> [MuscleGroup] {
-        DataManager.shared.fetchEntities(MuscleGroup.self)
-    }
-
-    func fetchExerciseOptions() -> [ExerciseOption] {
-        DataManager.shared.fetchEntities(ExerciseOption.self)
-    }
-}
-
 class ExerciseOptionsViewModel: ObservableObject {
-    var service: ExerciseOptionServiceProtocol
     var dataManager: DataManager = .shared
 
-    init(service: ExerciseOptionServiceProtocol = ExerciseOptionService(), dataManager: DataManager = .shared) {
-        self.service = service
+    init(dataManager: DataManager = .shared, muscleGroup: MuscleGroup) {
         self.dataManager = dataManager
-        self.muscleGroups = service.fetchMuscleGroups()
-        self.exercises = service.fetchExerciseOptions()
+        self.exercises = muscleGroup.exerciseOptions?.allObjects as? [ExerciseOption] ?? []
     }
 
     @Published var exercises: [ExerciseOption] = []
-    @Published var muscleGroups: [MuscleGroup] = []
-    @Published var selectedMuscleGroup: MuscleGroup?
     var filteredExercises: [ExerciseOption] {
         exercises.filter { exercise in
             return searchText.isEmpty ? true : exercise.name?.lowercased().contains(searchText.lowercased()) ?? false
@@ -46,7 +26,11 @@ class ExerciseOptionsViewModel: ObservableObject {
 }
 
 struct ExerciseOptionsView: View {
-    @StateObject var viewModel = ExerciseOptionsViewModel()
+    @StateObject private var viewModel: ExerciseOptionsViewModel
+
+    init(muscleGroup: MuscleGroup) {
+        _viewModel = StateObject(wrappedValue: ExerciseOptionsViewModel(muscleGroup: muscleGroup))
+    }
 
     @EnvironmentObject var router: Router
 
@@ -77,7 +61,21 @@ struct ExerciseOptionCell: View {
 }
 
 #Preview {
-    ExerciseOptionsView()
-        .environmentObject(DataManager.shared)
-        .environmentObject(Router())
+    ExerciseOptionsView(muscleGroup: {
+        let context = DataManager.shared.managedObjectContext
+        let muscleGroup = MuscleGroup(context: context)
+        muscleGroup.name = "Chest"
+
+        let exercise1 = ExerciseOption(context: context)
+        exercise1.name = "Bench Press"
+        exercise1.addToMuscleGroups(muscleGroup)
+
+        let exercise2 = ExerciseOption(context: context)
+        exercise2.name = "Push-ups"
+        exercise2.addToMuscleGroups(muscleGroup)
+
+        return muscleGroup
+    }())
+    .environmentObject(DataManager.shared)
+    .environmentObject(Router())
 }

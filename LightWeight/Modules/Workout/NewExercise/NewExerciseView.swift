@@ -14,7 +14,7 @@ struct NewExerciseView: View {
     var body: some View {
         VStack {
 			Button {
-				router.navigate(to: .exerciseOptionSelection)
+                router.navigate(to: .muscleGroupSelection)
 			} label: {
 				Rectangle()
 					.foregroundStyle(.gray.opacity(0.25))

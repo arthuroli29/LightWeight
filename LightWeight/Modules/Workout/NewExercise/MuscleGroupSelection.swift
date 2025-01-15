@@ -35,57 +35,59 @@ final class MuscleGroupSelectionViewModel: ObservableObject {
 }
 
 struct MuscleGroupSelectionView: View {
-    @ObservedObject var muscleGroupSelection: MuscleGroupSelectionViewModel
+    @ObservedObject var viewModel = MuscleGroupSelectionViewModel()
+    @EnvironmentObject var router: Router
     var body: some View {
-        VStack {
-            Spacer()
-            Text("Choose a game type")
-                .font(.system(size: 17))
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 5)
-                .multilineTextAlignment(.leading)
+        ZStack(alignment: .bottom) {
+            ScrollView {
+                VStack {
+                    Spacer()
+                        .frame(height: 28)
 
-            Spacer()
-                .frame(height: 28)
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                        ForEach(viewModel.muscleGroups, id: \.id) { muscle in
+                            MuscleGroupCell(
+                                muscle: muscle,
+                                selected: muscle === viewModel.selectedMuscleGroup,
+                                onSelect: { viewModel.didSelect(muscle) },
+                                enabled: true
+                            )
+                        }
+                    }
 
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                ForEach(muscleGroupSelection.muscleGroups, id: \.id) { muscle in
-                    MuscleGroupCell(
-                        muscle: muscle,
-                        selected: muscle === muscleGroupSelection.selectedMuscleGroup,
-                        onSelect: { muscleGroupSelection.didSelect(muscle) },
-                        enabled: true
-                    )
+                    Spacer()
+                        .frame(height: 50)
                 }
             }
-
-            Spacer()
-                .frame(height: 71)
+            .scrollIndicators(.never)
+            .padding(.horizontal, 20)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             Button {
-                if muscleGroupSelection.isButtonEnabled {
-                    // router.navigate(to: .newGameStep3(dto: dto))
+                if viewModel.isButtonEnabled,
+                    let selectedMuscleGroup = viewModel.selectedMuscleGroup {
+                    router.navigate(to: .exerciseOptionSelection(selectedMuscleGroup))
                 }
             } label: {
                 Text("Next")
                     .frame(maxWidth: 100)
-                    .foregroundStyle(muscleGroupSelection.isButtonEnabled ? .white : .black)
+                    .foregroundStyle(
+                        viewModel.isButtonEnabled ?
+                        Color(UIColor.label) :
+                        Color(UIColor.systemBackground)
+                    )
                     .font(.system(size: 17, weight: .medium))
                     .padding(.vertical, 14)
-                    .background(Color.gray)
+                    .background(viewModel.isButtonEnabled ? .accent : Color(UIColor.systemGray2))
                     .cornerRadius(.infinity)
             }
+            .removingTapAnimation(true)
             .padding(.horizontal, 35)
-
-            Spacer()
-                .frame(height: 25)
         }
-        .padding(.horizontal, 20)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
 #Preview {
-    MuscleGroupSelectionView(muscleGroupSelection: MuscleGroupSelectionViewModel())
+    MuscleGroupSelectionView(viewModel: MuscleGroupSelectionViewModel())
+        .environmentObject(Router())
 }

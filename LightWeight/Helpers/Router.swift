@@ -12,7 +12,8 @@ final class Router: ObservableObject {
         case routine(RoutineEntity)
         case workout(WorkoutEntity)
         case newExercise
-		case exerciseOptionSelection
+        case muscleGroupSelection
+		case exerciseOptionSelection(MuscleGroup)
     }
 
     @MainActor
@@ -25,8 +26,10 @@ final class Router: ObservableObject {
             view = AnyView(WorkoutView(workout: workout))
         case .newExercise:
             view = AnyView(NewExerciseView())
-        case .exerciseOptionSelection:
-			view = AnyView(ExerciseOptionsView())
+        case .muscleGroupSelection:
+            view = AnyView(MuscleGroupSelectionView())
+        case .exerciseOptionSelection(let muscleGroup):
+            view = AnyView(ExerciseOptionsView(muscleGroup: muscleGroup))
         }
         return view
     }

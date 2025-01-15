@@ -51,7 +51,7 @@ struct PickerSheetView<T: Hashable>: View {
                 .pickerStyle(WheelPickerStyle())
                 .frame(maxWidth: .infinity)
             }
-            .onChange(of: selectedValue) { newValue in
+            .onChange(of: selectedValue) { _, newValue in
                 didSelect(newValue)
             }
         }

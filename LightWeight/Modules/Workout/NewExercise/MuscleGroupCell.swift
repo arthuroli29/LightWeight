@@ -23,29 +23,29 @@ struct MuscleGroupCell: View {
                 }
             } label: {
                 ZStack {
-                    Color.secondary
+                    Color(UIColor.quaternaryLabel)
                         .frame(width: 160, height: 160)
                         .cornerRadius(30)
                         .roundedBorder(
                             cornerRadius: 30,
-                            color: selected ? Color.red : Color.gray,
+                            color: selected ? Color.accent : Color(UIColor.tertiaryLabel),
                             lineWidth: selected ? 4 : 1.5
                         )
-                        .shadow(color: Color.red.opacity(selected ? 0.5 : 0), radius: 20, x: 0, y: 0)
+                        .shadow(color: Color.accent.opacity(selected ? 0.5 : 0), radius: 20, x: 0, y: 0)
 
                     Image(systemName: "alarm")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .tint(.red)
                         .frame(width: 70, height: 70)
-                        .foregroundStyle(Color.red.opacity(selected ? 0.9 : 0.6))
+                        .foregroundStyle(Color.accent.opacity(selected ? 0.9 : 0.6))
                 }
             }
             .removingTapAnimation(true)
 
             Text(muscle.name ?? "")
                 .font(.system(size: 15))
-                .foregroundColor(selected ? .white : .gray)
+                .foregroundStyle(selected ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
         }
         .opacity(enabled ? 1 : 0.5)
     }
@@ -64,5 +64,5 @@ struct MuscleGroupCell: View {
         onSelect: { isSelected.toggle() },
         enabled: true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.primary)
+        .background(Color(UIColor.systemBackground))
 }
