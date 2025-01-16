@@ -60,6 +60,12 @@ struct ExerciseSet {
 }
 
 final class NewExerciseViewModel: ObservableObject {
+    init(router: NewExerciseRouter) {
+        self.router = router
+    }
+
+    private let router: NewExerciseRouter
+
     @Published var sets: [ExerciseSet] = (0..<4).map {
         ExerciseSet(order: $0)
     }
@@ -137,5 +143,9 @@ final class NewExerciseViewModel: ObservableObject {
     }
     var isDeleteSetDisabled: Bool {
         sets.count == 1
+    }
+
+    func navigateToMuscleGroupSelection() {
+        router.routeToMuscleGroupSelection()
     }
 }

@@ -9,7 +9,8 @@ import SwiftUI
 import Combine
 
 final class RoutineViewModel: ObservableObject {
-    init(routineEntity: RoutineEntity, dataManager: DataManager = .shared) {
+    init(router: RoutineRouter, routineEntity: RoutineEntity, dataManager: DataManager = .shared) {
+        self.router = router
         self.dataManager = dataManager
         self.routine = routineEntity
 
@@ -22,6 +23,8 @@ final class RoutineViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+
+    private let router: RoutineRouter
 
     deinit {
         for cancellable in cancellables {
@@ -74,5 +77,9 @@ final class RoutineViewModel: ObservableObject {
             self.routine.active.toggle()
             self.objectWillChange.send()
         }
+    }
+
+    func navigateToWorkout(_ workout: WorkoutEntity) {
+        router.routeToWorkout(workout)
     }
 }

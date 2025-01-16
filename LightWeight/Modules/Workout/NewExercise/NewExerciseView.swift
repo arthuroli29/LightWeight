@@ -8,37 +8,40 @@
 import SwiftUI
 
 struct NewExerciseView: View {
-    @StateObject var viewModel = NewExerciseViewModel()
-	@EnvironmentObject var router: Router
+    init(viewModel: NewExerciseViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
+    @StateObject var viewModel: NewExerciseViewModel
 
     var body: some View {
         VStack {
-			Button {
-                router.navigate(to: .muscleGroupSelection)
-			} label: {
-				Rectangle()
-					.foregroundStyle(.gray.opacity(0.25))
-					.frame(maxWidth: .infinity, maxHeight: 75)
-					.cornerRadius(20)
-					.overlay {
-						HStack {
-							Image(systemName: "dumbbell.fill")
-								.resizable()
-								.aspectRatio(contentMode: .fit)
-								.frame(width: 30, height: 30)
-								.foregroundStyle(.accent)
-								.rotationEffect(.degrees(35))
+                        Button {
+                            viewModel.navigateToMuscleGroupSelection()
+                        } label: {
+                                Rectangle()
+                                        .foregroundStyle(.gray.opacity(0.25))
+                                        .frame(maxWidth: .infinity, maxHeight: 75)
+                                        .cornerRadius(20)
+                                        .overlay {
+                                                HStack {
+                                                        Image(systemName: "dumbbell.fill")
+                                                                .resizable()
+                                                                .aspectRatio(contentMode: .fit)
+                                                                .frame(width: 30, height: 30)
+                                                                .foregroundStyle(.accent)
+                                                                .rotationEffect(.degrees(35))
 
-							Spacer()
-								.frame(width: 10)
+                                                        Spacer()
+                                                                .frame(width: 10)
 
-							Text("Choose the exercise")
-								.font(.system(size: 18, weight: .medium))
-								.foregroundStyle(.primary)
-						}
-					}
-					.padding(.horizontal, 20)
-			}
+                                                        Text("Choose the exercise")
+                                                                .font(.system(size: 18, weight: .medium))
+                                                                .foregroundStyle(.primary)
+                                                }
+                                        }
+                                        .padding(.horizontal, 20)
+                        }
 
 
             Spacer()
@@ -112,5 +115,7 @@ struct NewExerciseView: View {
 }
 
 #Preview {
-    NewExerciseView()
+    let appRouter = AppRouter()
+    let newExerciseRouter = NewExerciseRouter(rootCoordinator: appRouter)
+    return NewExerciseView(viewModel: NewExerciseViewModel(router: newExerciseRouter))
 }

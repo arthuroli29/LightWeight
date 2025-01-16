@@ -9,13 +9,16 @@ import CoreData
 import SwiftUI
 
 final class RoutineListViewModel: NSObject, ObservableObject {
-    init(dataManager: DataManager = DataManager.shared) {
+    init(router: RoutineListRouter, dataManager: DataManager = DataManager.shared) {
+        self.router = router
         self.dataManager = dataManager
 
         super.init()
 
         fetchRoutines()
     }
+
+    private let router: RoutineListRouter
 
     @Published var newRoutineText: String = ""
     @Published var isAddRoutineSheetPresented: Bool = false
@@ -82,5 +85,9 @@ extension RoutineListViewModel: NSFetchedResultsControllerDelegate {
 //            dataManager.saveData() // Causes crash becaue of recursive save call,
 //            TODO: gotta find another way to save which routine is "active"
         }
+    }
+
+    func navigateToRoutine(_ routine: RoutineEntity) {
+        router.routeToRoutine(routine)
     }
 }

@@ -10,24 +10,16 @@ import SwiftUI
 @main
 struct LightWeightApp: App {
     let dataManager = DataManager.shared
-
-    @ObservedObject var router = Router()
-
-    init() {
-        if let activeRoutine = dataManager.fetchActiveRoutine() {
-            router.navigate(to: .routine(activeRoutine))
-        }
-    }
+    @StateObject var appRouter = AppRouter()
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $router.navPath) {
-                RoutineListView()
-                .navigationDestination(for: Router.Destination.self) { destination in
-                    router.getViewForDestination(destination)
-                }
+            NavigationStack(path: $appRouter.paths) {
+                appRouter.resolveInitialRouter().makeView()
+                    .navigationDestination(for: AnyRoutable.self) { router in
+                        router.makeView()
+                    }
             }
-            .environmentObject(router)
             .environmentObject(dataManager)
         }
     }

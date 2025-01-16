@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct WorkoutView: View {
-    init(workout: WorkoutEntity) {
-        _viewModel = StateObject(wrappedValue: WorkoutViewModel(workoutEntity: workout))
+    init(viewModel: WorkoutViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
-    @EnvironmentObject var router: Router
     @StateObject var viewModel: WorkoutViewModel
 
     var body: some View {
@@ -31,7 +30,7 @@ struct WorkoutView: View {
                             .environment(\.editMode, $viewModel.editMode)
 
                         Button {
-                            router.navigate(to: .newExercise)
+                            viewModel.navigateToNewExercise()
                         } label: {
                             Label("", systemImage: "plus")
                         }
@@ -51,7 +50,8 @@ struct WorkoutView: View {
 }
 
 #Preview {
-    WorkoutView(workout: {
+    let appRouter = AppRouter()
+    let workout = {
         let workout = WorkoutEntity(context: DataManager.shared.managedObjectContext)
         for index in 0...5 {
             let exerciseOption = ExerciseOption(dataManager: DataManager.shared)
@@ -69,5 +69,7 @@ struct WorkoutView: View {
             exerciseEntity.workout = workout
         }
         return workout
-    }())
+    }()
+    let workoutRouter = WorkoutRouter(rootCoordinator: appRouter, workout: workout)
+    return WorkoutView(viewModel: WorkoutViewModel(router: workoutRouter, workoutEntity: workout))
 }

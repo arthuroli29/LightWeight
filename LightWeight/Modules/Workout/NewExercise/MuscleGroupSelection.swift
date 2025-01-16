@@ -20,8 +20,10 @@ struct MuscleGroupService: MuscleGroupServiceProtocol {
 final class MuscleGroupSelectionViewModel: ObservableObject {
     @Published var muscleGroups: [MuscleGroup]
     @Published var selectedMuscleGroup: MuscleGroup?
+    private let router: MuscleGroupSelectionRouter
 
-    init(muscleGroupServiceProtocol: MuscleGroupServiceProtocol = MuscleGroupService()) {
+    init(router: MuscleGroupSelectionRouter, muscleGroupServiceProtocol: MuscleGroupServiceProtocol = MuscleGroupService()) {
+        self.router = router
         self.muscleGroups = muscleGroupServiceProtocol.getMuscleGroups()
     }
 
@@ -32,11 +34,20 @@ final class MuscleGroupSelectionViewModel: ObservableObject {
     func didSelect(_ muscleGroup: MuscleGroup) {
         selectedMuscleGroup = selectedMuscleGroup === muscleGroup ? nil : muscleGroup
     }
+
+    func navigateToExerciseOptions() {
+        if let selectedMuscleGroup = selectedMuscleGroup {
+            router.routeToExerciseOptions(selectedMuscleGroup)
+        }
+    }
 }
 
 struct MuscleGroupSelectionView: View {
-    @ObservedObject var viewModel = MuscleGroupSelectionViewModel()
-    @EnvironmentObject var router: Router
+    init(viewModel: MuscleGroupSelectionViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
+    @StateObject var viewModel: MuscleGroupSelectionViewModel
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
@@ -64,9 +75,8 @@ struct MuscleGroupSelectionView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             Button {
-                if viewModel.isButtonEnabled,
-                    let selectedMuscleGroup = viewModel.selectedMuscleGroup {
-                    router.navigate(to: .exerciseOptionSelection(selectedMuscleGroup))
+                if viewModel.isButtonEnabled {
+                    viewModel.navigateToExerciseOptions()
                 }
             } label: {
                 Text("Next")
@@ -88,6 +98,7 @@ struct MuscleGroupSelectionView: View {
 }
 
 #Preview {
-    MuscleGroupSelectionView(viewModel: MuscleGroupSelectionViewModel())
-        .environmentObject(Router())
+    let appRouter = AppRouter()
+    let muscleGroupSelectionRouter = MuscleGroupSelectionRouter(rootCoordinator: appRouter)
+    return MuscleGroupSelectionView(viewModel: MuscleGroupSelectionViewModel(router: muscleGroupSelectionRouter))
 }

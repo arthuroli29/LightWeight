@@ -9,7 +9,8 @@ import SwiftUI
 import Combine
 
 final class WorkoutViewModel: ObservableObject {
-    init(workoutEntity: WorkoutEntity, dataManager: DataManager = .shared) {
+    init(router: WorkoutRouter, workoutEntity: WorkoutEntity, dataManager: DataManager = .shared) {
+        self.router = router
         self.dataManager = dataManager
         self.workout = workoutEntity
 
@@ -21,6 +22,8 @@ final class WorkoutViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+
+    private let router: WorkoutRouter
 
     deinit {
         for cancellable in cancellables {
@@ -74,4 +77,8 @@ final class WorkoutViewModel: ObservableObject {
 //            self.objectWillChange.send()
 //        }
 //    }
+
+    func navigateToNewExercise() {
+        router.routeToNewExercise()
+    }
 }

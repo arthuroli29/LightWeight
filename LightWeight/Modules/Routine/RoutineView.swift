@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct RoutineView: View {
-    init(routine: RoutineEntity) {
-        _viewModel = StateObject(wrappedValue: RoutineViewModel(routineEntity: routine))
+    init(viewModel: RoutineViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
-    @EnvironmentObject var router: Router
     @StateObject var viewModel: RoutineViewModel
 
     var body: some View {
@@ -40,7 +39,7 @@ struct RoutineView: View {
                 List {
                     ForEach(viewModel.workouts) { workout in
                         Button {
-                            router.navigate(to: .workout(workout))
+                            viewModel.navigateToWorkout(workout)
                         } label: {
                             Text(workout.name ?? "Unnamed workout")
                         }
@@ -107,7 +106,8 @@ struct RoutineView: View {
 }
 
 #Preview {
-    RoutineView(routine: {
+    let appRouter = AppRouter()
+    let routine = {
         let entity = RoutineEntity(context: DataManager.shared.managedObjectContext)
         entity.name = "Routine 123"
         for newWorkoutIndex in 0...9 {
@@ -117,5 +117,6 @@ struct RoutineView: View {
         }
         return entity
     }()
-    )
+    let routineRouter = RoutineRouter(rootCoordinator: appRouter, routine: routine)
+    return RoutineView(viewModel: RoutineViewModel(router: routineRouter, routineEntity: routine))
 }
