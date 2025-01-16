@@ -13,18 +13,23 @@ enum SeedingError: Error {
 }
 
 struct SeedManager {
+    private static let currentSeedVersion = 1
+    private static let seedVersionKey = "SeedManagerVersion"
     private let dataManager: DataManager
 
     init(dataManager: DataManager) {
         self.dataManager = dataManager
     }
 
-    func seedAll() throws {
-        // First seed MuscleGroups as they are referenced by ExerciseOptions
+    func seedAllIfNeeded() throws {
+        guard Self.currentSeedVersion > UserDefaults.standard.integer(forKey: Self.seedVersionKey) else { return }
+
         var fetchedEntities: [UUID: NSManagedObject] = [:]
         try syncEntities(of: MuscleGroup.self, using: &fetchedEntities)
         try syncEntities(of: ExerciseOption.self, using: &fetchedEntities)
         dataManager.saveData()
+
+        UserDefaults.standard.set(Self.currentSeedVersion, forKey: Self.seedVersionKey)
     }
 
     private func syncEntities<Entity: SeedableEntity>(of entityType: Entity.Type, using fetchedEntities: inout [UUID: NSManagedObject]) throws {

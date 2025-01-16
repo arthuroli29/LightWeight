@@ -35,7 +35,7 @@ class DataManager: NSObject, ObservableObject {
     private func seedNativeEntities() {
         do {
             let seedManager = SeedManager(dataManager: self)
-            try seedManager.seedAll()
+            try seedManager.seedAllIfNeeded()
         } catch {
             assertionFailure("Failed to update native data: \(error.localizedDescription)")
         }
